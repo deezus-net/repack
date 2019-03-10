@@ -34,6 +34,16 @@ namespace repack.Models
         {
             return await _db.Stacks.FindAsync(id);
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public async Task<Stack> GetByToken(string token)
+        {
+            return await _db.Stacks.Include(s => s.Tasks).FirstOrDefaultAsync(s => s.Token == token);
+        }
 
         /// <summary>
         /// 

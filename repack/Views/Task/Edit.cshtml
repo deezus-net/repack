@@ -1,7 +1,9 @@
 @model repack.ViewModels.TaskViewModel
 <form action="~/task/edit/@(Model.StackId)/@(Model.Id > 0 ? Model.Id.ToString() : "")" method="post">
     <input type="text" asp-for="Task.Name" />
-    <textarea asp-for="Task.Content"></textarea>
+    
+    <input type="url" asp-for="TaskContent.Url"/>
+    <textarea asp-for="TaskContent.Body"></textarea>
     
     <label><input type="checkbox" asp-for="Delete"/>削除</label>
     <button type="submit">保存</button>

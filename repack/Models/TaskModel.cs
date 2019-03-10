@@ -56,6 +56,7 @@ namespace repack.Models
                 else
                 {
                     currentTask.Name = task.Name;
+                    currentTask.Content = task.Content;
                     currentTask.Modified = DateTime.Now;
                 }
 

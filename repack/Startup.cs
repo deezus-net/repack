@@ -37,7 +37,7 @@ namespace repack
             {
                 op.UseNpgsql(Configuration.GetConnectionString("pgsql"));
             });
-
+            services.AddHttpClient();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

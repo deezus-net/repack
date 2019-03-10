@@ -1,0 +1,16 @@
+{
+  "name": "repack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update": "dac update -H localhost -t postgres -u repack -p repack -d repack -i db.yml"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@deezus/dac": "0.0.6"
+  }
+}

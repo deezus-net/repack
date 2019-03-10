@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using repack.Entities;
 using repack.Models;
 
@@ -11,9 +13,8 @@ namespace repack.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(Db db)
+        public HomeController()
         {
-            var s = db.Stacks.ToList();
         }
         public IActionResult Index()
         {

@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using repack.Entities;
 using repack.Models;
 using repack.ViewModels;
@@ -38,6 +39,7 @@ namespace repack.Controllers
         public async Task<IActionResult> Edit(int stackId, int id)
         {
             var vModel = new TaskViewModel {StackId = stackId, Id = id, Task = (await _taskModel.Get(id)) ?? new Task() { }};
+            vModel.TaskContent = JsonConvert.DeserializeObject<TaskContent>(vModel.Task.Content ?? "");
             return View(vModel);
         }
 
@@ -59,6 +61,7 @@ namespace repack.Controllers
             }
             else
             {
+                vModel.Task.Content = JsonConvert.SerializeObject(vModel.TaskContent);
                 result = await _taskModel.Update(vModel.Task);
             }
 

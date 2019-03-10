@@ -11,6 +11,8 @@ namespace repack.ViewModels
         public Task Task { get; set; } 
         public List<Task> Tasks { get; set; }
         
+        public TaskContent TaskContent { get; set; }
+        
         public bool Delete { get; set; }
     }
 }
