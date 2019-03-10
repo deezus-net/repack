@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
@@ -17,11 +18,13 @@ namespace repack.Controllers
     public class WebHookController : Controller
     {
         private readonly StackModel _stackModel;
+        private readonly LogModel _logModel;
         private readonly IHttpClientFactory _httpClientFactory;
         
         public WebHookController(Db db, IHttpClientFactory httpClientFactory)
         {
             _stackModel = new StackModel(db);
+            _logModel = new LogModel(db);
             _httpClientFactory = httpClientFactory;
         }
         
@@ -32,7 +35,7 @@ namespace repack.Controllers
         /// <param name="post"></param>
         /// <returns></returns>
         [HttpPost("{token}")]
-        public async Task<ApiResponse> Index(string token, [FromBody] JObject post)
+        public async Task<ApiResponse> Index(string token/*, [FromBody] JObject post*/)
         {
             var result = new ApiResponse();
             var stack = await _stackModel.GetByToken(token);
@@ -42,11 +45,35 @@ namespace repack.Controllers
             }
             else
             {
+                var body = "";
+                var headers = HttpContext.Request.Headers.Keys.ToDictionary<string, string, string>(key => key, key => HttpContext.Request.Headers[key]);
+
+                using (var stream = new StreamReader(HttpContext.Request.Body))
+                {
+                    body = stream.ReadToEnd();
+                }
+                await _logModel.WriteReceivedLog(new ReceivedLog
+                {
+                    StackId = stack.Id,
+                    Header = JsonConvert.SerializeObject(headers),
+                    Body = body
+                });
+                var post = JObject.Parse(body);
+                
                 var webHook = new WebHook(post, _httpClientFactory);
                 
                 foreach (var task in stack.Tasks)
                 {
-                    await webHook.Send(JsonConvert.DeserializeObject<TaskContent>(task.Content));
+                    var (sentBody, response) = await webHook.Send(JsonConvert.DeserializeObject<TaskContent>(task.Content));
+                    if (response != null)
+                    {
+                        await _logModel.WriteSentLog(new SentLog()
+                        {
+                            TaskId = task.Id,
+                            Content = sentBody,
+                            Response = await response.Content.ReadAsStringAsync()
+                        });
+                    }
                 }
                 result.Result = "OK";
             }

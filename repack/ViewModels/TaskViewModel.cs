@@ -13,6 +13,8 @@ namespace repack.ViewModels
         
         public TaskContent TaskContent { get; set; }
         
+        public List<SentLog>Logs { get; set; }
+        
         public bool Delete { get; set; }
     }
 }

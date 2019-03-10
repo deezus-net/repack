@@ -8,6 +8,8 @@ namespace repack.ViewModels
         public Stack Stack { get; set; } 
         public List<Stack> Stacks { get; set; }
         
+        public List<ReceivedLog> Logs { get; set; }
+        
         public bool Delete { get; set; }
     }
 }

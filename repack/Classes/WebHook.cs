@@ -21,9 +21,8 @@ namespace repack.Classes
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>
-        public async Task<bool> Send(TaskContent content)
+        public async Task<(string, HttpResponseMessage)> Send(TaskContent content)
         {
-            var result = false;
             var body = content.Body;
             foreach (var (text, path) in GetPropertyName(content.Body))
             {
@@ -31,25 +30,18 @@ namespace repack.Classes
                 body = body.Replace(text, value);
             }
 
-            if (string.IsNullOrEmpty(content.Url) || string.IsNullOrEmpty(body)) return result;
+            if (string.IsNullOrEmpty(content.Url) || string.IsNullOrEmpty(body)) return (body, null);
             try
             {
                 var httpClient = _httpClientFactory.CreateClient();
-                var res = await httpClient.PostAsync(content.Url, new StringContent(body, Encoding.UTF8, "application/json"));
-                if (res.IsSuccessStatusCode)
-                {
-                    result = true;
-                }
-                else
-                {
-                }
+                return (body, await httpClient.PostAsync(content.Url, new StringContent(body, Encoding.UTF8, "application/json")));
             }
             catch (Exception e)
             {
             }
 
 
-            return result;
+            return (body, null);
         }
     }
 }

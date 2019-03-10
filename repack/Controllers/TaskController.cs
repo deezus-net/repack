@@ -12,10 +12,12 @@ namespace repack.Controllers
     public class TaskController : Controller
     {
         private readonly TaskModel _taskModel;
+        private readonly LogModel _logModel;
 
         public TaskController(Entities.Db db)
         {
             _taskModel = new TaskModel(db);
+            _logModel = new LogModel(db);
         }
 
         /// <summary>
@@ -26,6 +28,18 @@ namespace repack.Controllers
         public async Task<IActionResult> Index(int stackId)
         {
             var vModel = new TaskViewModel { StackId = stackId, Tasks = await _taskModel.GetList(stackId)};
+            return View(vModel);
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("log/{stackId}/{id}")]
+        public async Task<IActionResult> Log(int id)
+        {
+            var vModel = new TaskViewModel { Logs = await _logModel.GetSentLog(id) };
             return View(vModel);
         }
 

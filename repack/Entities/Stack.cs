@@ -25,5 +25,7 @@ namespace repack.Entities
         public DateTime Created { get; set; }
         
         public List<Task> Tasks { get; set; }
+        
+        public List<ReceivedLog> ReceivedLogs { get; set; }
     }
 }

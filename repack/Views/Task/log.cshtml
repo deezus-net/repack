@@ -1,0 +1,12 @@
+@model repack.ViewModels.TaskViewModel
+<table>
+@foreach (var log in Model.Logs)
+{
+    <tr>
+        <td>@log.Created</td>
+        <td>@log.Content</td>
+        <td>@log.Response</td>
+    </tr>    
+}
+
+</table>

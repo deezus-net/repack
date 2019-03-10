@@ -9,10 +9,12 @@ namespace repack.Controllers
     public class StackController : Controller
     {
         private readonly StackModel _stackModel;
+        private readonly LogModel _logModel;
 
         public StackController(Entities.Db db)
         {
             _stackModel = new StackModel(db);
+            _logModel = new LogModel(db);
         }
 
         /// <summary>
@@ -22,6 +24,17 @@ namespace repack.Controllers
         public async Task<IActionResult> Index()
         {
             var vModel = new StackViewModel {Stacks = await _stackModel.GetList()};
+            return View(vModel);
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> Log(int id)
+        {
+            var vModel = new StackViewModel { Logs = await _logModel.GetReceivedLog(id) };
             return View(vModel);
         }
         

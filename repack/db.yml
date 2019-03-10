@@ -43,4 +43,42 @@ tables:
       created:
         type: timestamp
         notNull: true
+  received_logs:
+    columns:
+      id:
+        id: true
+      stack_id:
+        type: int
+        notNull: true
+      header:
+        type: text
+      body:
+        type: text
+      created:
+        type: timestamp
+        notNull: true
+    indexes:
+      ix_stack_id:
+        columns:
+          stack_id: asc
+  sent_logs:
+    columns:
+      id:
+        id: true
+      task_id:
+        type: int
+        notNull: true
+      content:
+        type: text
+        notNull: true
+      response:
+        type: text
+        notNull: true
+      created:
+        type: timestamp
+        notNull: true
+    indexes:
+      ix_task_id:
+        columns:
+          task_id: asc
       
