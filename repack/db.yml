@@ -1,0 +1,16 @@
+tables:
+  stacks:
+    columns:
+      id: 
+        id: true
+      name:
+        type: varchar
+        length: 100
+        notNull: true
+      modified:
+        type: timestamp
+        notNull: true
+      created:
+        type: timestamp
+        notNull: true
+      
