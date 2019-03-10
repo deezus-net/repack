@@ -7,6 +7,36 @@ tables:
         type: varchar
         length: 100
         notNull: true
+      token:
+        type: varchar
+        length: 32
+        notNull: true
+      modified:
+        type: timestamp
+        notNull: true
+      created:
+        type: timestamp
+        notNull: true
+    indexes:
+      ix_token:
+        columns:
+          token: asc
+  tasks:
+    columns:
+      id:
+        id: true
+      stack_id:
+        type: int
+        notNull: true
+      name:
+        type: varchar
+        length: 100
+      order_no:
+        type: int
+        notNull: true
+      content:
+        type: text
+        notNull: true
       modified:
         type: timestamp
         notNull: true

@@ -1,0 +1,6 @@
+@model repack.ViewModels.StackViewModel
+<form action="~/stack/edit/@(Model.Stack.Id > 0 ? Model.Stack.Id.ToString() : "")" method="post">
+    <input type="text" asp-for="Stack.Name" />
+    <label><input type="checkbox" asp-for="Delete"/>削除</label>
+    <button type="submit">保存</button>
+</form>

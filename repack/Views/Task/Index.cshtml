@@ -1,0 +1,12 @@
+@model repack.ViewModels.TaskViewModel
+<a href="~/task/edit/@Model.StackId">新規作成</a>
+<table>
+@foreach (var task in Model.Tasks)
+{
+    <tr>
+        <td>@task.Name</td>
+        <td><a href="~/task/edit/@Model.StackId/@task.Id">編集</a></td>
+    </tr>    
+}
+
+</table>
