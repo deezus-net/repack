@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using repack.Entities;
 using repack.Models;
@@ -6,6 +7,7 @@ using repack.ViewModels;
 
 namespace repack.Controllers
 {
+    [Authorize]
     public class StackController : Controller
     {
         private readonly StackModel _stackModel;

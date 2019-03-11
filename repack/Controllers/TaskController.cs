@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using repack.Entities;
@@ -8,6 +9,7 @@ using Task = repack.Entities.Task;
 
 namespace repack.Controllers
 {
+    [Authorize]
     [Route("task")]
     public class TaskController : Controller
     {

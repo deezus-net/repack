@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using repack.Entities;
 using repack.Models;
 using repack.ViewModels;
@@ -21,6 +22,11 @@ namespace repack.Controllers
         }
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return Redirect("~/stack/");
+            }
+            
             var vModel = new LoginViewModel();
             return View(vModel);
         }
@@ -32,6 +38,15 @@ namespace repack.Controllers
             var user = await _userModel.Login(vModel.Id, vModel.Password);
             if (user != null)
             {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                };
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties();
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity), authProperties);
+                
                 return Redirect("~/stack/");
             }
             return View(vModel);
