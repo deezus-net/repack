@@ -30,16 +30,17 @@ namespace repack.Controllers
             var vModel = new TaskViewModel { StackId = stackId, Tasks = await _taskModel.GetList(stackId)};
             return View(vModel);
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="stackId"></param>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("log/{stackId}/{id}")]
-        public async Task<IActionResult> Log(int id)
+        public async Task<IActionResult> Log(int stackId, int id)
         {
-            var vModel = new TaskViewModel { Logs = await _logModel.GetSentLog(id) };
+            var vModel = new TaskViewModel { StackId = stackId, Logs = await _logModel.GetSentLog(id) };
             return View(vModel);
         }
 

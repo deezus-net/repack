@@ -1,10 +1,30 @@
 @model repack.ViewModels.TaskViewModel
-<form action="~/task/edit/@(Model.StackId)/@(Model.Id > 0 ? Model.Id.ToString() : "")" method="post">
-    <input type="text" asp-for="Task.Name" />
-    
-    <input type="url" asp-for="TaskContent.Url"/>
-    <textarea asp-for="TaskContent.Body"></textarea>
-    
-    <label><input type="checkbox" asp-for="Delete"/>削除</label>
-    <button type="submit">保存</button>
+<div class="row mt-5">
+    <div class="col-6">
+        <a href="~/task/@Model.StackId" class="btn btn-secondary">Back</a>
+    </div>
+</div>
+<form class="mt-3" action="~/task/edit/@(Model.StackId)/@(Model.Id > 0 ? Model.Id.ToString() : "")" method="post">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Task Name" asp-for="Task.Name">
+    </div>
+    <div class="form-group">
+        <label for="url">URL</label>
+        <input type="text" class="form-control" id="url" placeholder="URL" asp-for="TaskContent.Url">
+    </div>
+    <div class="form-group">
+        <label for="body">Request Body</label>
+        <textarea class="form-control" id="body" placeholder="URL" rows="10" asp-for="TaskContent.Body"></textarea>
+    </div>
+    @if (Model.Task.Id > 0)
+    {
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="delete" asp-for="Delete">
+            <label class="form-check-label" for="delete">Delete</label>
+        </div>
+    }
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>

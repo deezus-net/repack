@@ -1,12 +1,31 @@
 @model repack.ViewModels.StackViewModel
-<table>
-@foreach (var log in Model.Logs)
-{
+<div class="row mt-5">
+    <div class="col-6">
+        <a href="~/stack/" class="btn btn-secondary">Back</a>
+
+    </div>
+</div>
+<table class="table table-striped mt-3">
+    <thead>
     <tr>
-        <td>@log.Created</td>
-        <td>@log.Header</td>
-        <td>@log.Body</td>
-    </tr>    
-}
+        <th>Date</th>
+        <th>Request Header</th>
+        <th>Request Body</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var log in Model.Logs)
+    {
+        <tr>
+            <td>@log.Created</td>
+            <td>
+                <textarea class="form-control" rows="5" readonly="readonly">@log.Header</textarea>
+            </td>
+            <td>
+                <textarea class="form-control" rows="5" readonly="readonly">@log.Body</textarea>
+            </td>
+        </tr>
+    }
+    </tbody>
 
 </table>

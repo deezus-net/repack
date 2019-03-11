@@ -68,6 +68,9 @@ tables:
       task_id:
         type: int
         notNull: true
+      url:
+        type: text
+        notNull: true
       content:
         type: text
         notNull: true

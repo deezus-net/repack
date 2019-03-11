@@ -1,13 +1,33 @@
 @model repack.ViewModels.TaskViewModel
-<a href="~/task/edit/@Model.StackId">新規作成</a>
-<table>
-@foreach (var task in Model.Tasks)
-{
-    <tr>
-        <td>@task.Name</td>
-        <td><a href="~/task/edit/@Model.StackId/@task.Id">編集</a></td>
-        <td><a href="~/task/log/@Model.StackId/@task.Id">ログ</a></td>
-    </tr>    
-}
+<div class="row mt-5">
+    <div class="col-6">
+        <a href="~/stack/" class="btn btn-secondary">Back</a>
 
+    </div>
+    <div class="col-6 text-right">
+        <a href="~/task/edit/@Model.StackId" class="btn btn-primary">Create Task</a>
+
+    </div>
+</div>
+<table class="table table-striped mt-3">
+    <thead>
+    <tr>
+        <th>No.</th>
+        <th>Task Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var task in Model.Tasks)
+    {
+        <tr>
+            <td>@task.OrderNo</td>
+            <td>@task.Name</td>
+            <td class="text-right">
+                <a href="~/task/edit/@Model.StackId/@task.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
+                <a href="~/task/log/@Model.StackId/@task.Id" class="btn btn-sm btn-warning">Log</a>
+            </td>
+        </tr>
+    }
+    </tbody>
 </table>

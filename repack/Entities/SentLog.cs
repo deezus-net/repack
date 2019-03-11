@@ -12,6 +12,9 @@ namespace repack.Entities
         [Column("task_id")]
         public int TaskId { get; set; }
         
+        [Column("url")]
+        public string Url { get; set; }
+        
         [Column("content")]
         public string Content { get; set; }
         

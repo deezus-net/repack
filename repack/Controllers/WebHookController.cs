@@ -64,12 +64,14 @@ namespace repack.Controllers
                 
                 foreach (var task in stack.Tasks)
                 {
-                    var (sentBody, response) = await webHook.Send(JsonConvert.DeserializeObject<TaskContent>(task.Content));
+                    var taskContent = JsonConvert.DeserializeObject<TaskContent>(task.Content);
+                    var (sentBody, response) = await webHook.Send(taskContent);
                     if (response != null)
                     {
                         await _logModel.WriteSentLog(new SentLog()
                         {
                             TaskId = task.Id,
+                            Url = taskContent.Url,
                             Content = sentBody,
                             Response = await response.Content.ReadAsStringAsync()
                         });

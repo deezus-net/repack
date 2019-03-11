@@ -1,7 +1,20 @@
-html, body{
+/*html, body{
     height: 100%;
+}
+*/
+body{
+    padding-top: 30px;
+}
+.login{
+    height: calc(100vh - 30px);
 }
 
-.login{
-    height: 100%;
+.login form{
+    width: 30rem;
+    margin: auto;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    padding: 1.6rem;
 }
+
+
