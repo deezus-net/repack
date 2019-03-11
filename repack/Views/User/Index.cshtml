@@ -1,0 +1,12 @@
+@model repack.ViewModels.UserViewModel
+<a href="~/user/edit/">新規作成</a>
+<table>
+@foreach (var user in Model.Users)
+{
+    <tr>
+        <td>@user.Name</td>
+        <td><a href="~/user/edit/@user.Id">編集</a></td>
+    </tr>    
+}
+
+</table>

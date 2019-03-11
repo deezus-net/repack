@@ -20,7 +20,13 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "RepackSalt": "m+DiM|B66(nxJDWnvZQT",
+        "RepackDbHost": "localhost",
+        "RepackDbUser": "repack",
+        "RepackDbPassword": "repack",
+        "RepackDbName": "repack",
+        "RepackDbPort": "5432"
       }
     }
   }

@@ -8,29 +8,34 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using repack.Entities;
 using repack.Models;
+using repack.ViewModels;
 
 namespace repack.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly UserModel _userModel;
+        public HomeController(Db db, AppSetting appSetting)
         {
+            _userModel = new UserModel(db, appSetting.Salt);
         }
         public IActionResult Index()
         {
-           // var stack = db.Stacks.ToList();
-            return View();
+            var vModel = new LoginViewModel();
+            return View(vModel);
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public async Task<IActionResult> Index(LoginViewModel vModel)
         {
-            return View();
+            if (!ModelState.IsValid) return View(vModel);
+            var user = await _userModel.Login(vModel.Id, vModel.Password);
+            if (user != null)
+            {
+                return Redirect("~/stack/");
+            }
+            return View(vModel);
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
-        }
+        
     }
 }

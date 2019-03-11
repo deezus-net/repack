@@ -81,4 +81,22 @@ tables:
       ix_task_id:
         columns:
           task_id: asc
+  users:
+    columns:
+      id:
+        id: true
+      name:
+        type: varchar
+        length: 100
+        notNull: true
+      password:
+        type: varchar
+        length: 64
+        notNull: true
+      modified:
+        type: timestamp
+        notNull: true
+      created:
+        type: timestamp
+        notNull: true
       

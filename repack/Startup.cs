@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 using repack.Entities;
 
 namespace repack
@@ -32,13 +33,26 @@ namespace repack
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
+
+            var builder = new NpgsqlConnectionStringBuilder
+            {
+                Host = Configuration.GetValue<string>("RepackDbHost"),
+                Port = Configuration.GetValue<int>("RepackDbPort"),
+                Username = Configuration.GetValue<string>("RepackDbUser"),
+                Password = Configuration.GetValue<string>("RepackDbPassword"),
+                Database = Configuration.GetValue<string>("RepackDbName")
+            };
+            var connectionString = builder.ToString();
+
             services.AddDbContext<Db>(op =>
             {
-                op.UseNpgsql(Configuration.GetConnectionString("pgsql"));
+                op.UseNpgsql(connectionString);
             });
             services.AddHttpClient();
 
+
+            // di
+            services.AddSingleton(new AppSetting() {Salt = Configuration.GetValue<string>("RepackSalt")});
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

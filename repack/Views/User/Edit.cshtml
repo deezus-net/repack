@@ -1,0 +1,15 @@
+@model repack.ViewModels.UserViewModel
+<form action="~/user/edit/@(Model.User.Id > 0 ? Model.User.Id.ToString() : "")" method="post">
+    <fieldset class="uk-fieldset">
+        <div class="uk-margin">
+            <input class="uk-input" type="text" placeholder="ID" asp-for="User.Name" />
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="password" placeholder="password" asp-for="User.Password" />
+        </div>
+        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+            <label><input class="uk-checkbox" type="checkbox" asp-for="Delete">削除</label>
+        </div>
+        <button type="submit" class="uk-button uk-button-primary">保存</button>
+    </fieldset>
+</form>

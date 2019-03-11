@@ -1,0 +1,12 @@
+@model repack.ViewModels.StackViewModel
+<table>
+@foreach (var log in Model.Logs)
+{
+    <tr>
+        <td>@log.Created</td>
+        <td>@log.Header</td>
+        <td>@log.Body</td>
+    </tr>    
+}
+
+</table>

@@ -1,8 +1,19 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model repack.ViewModels.LoginViewModel
+<div class="login uk-flex uk-flex-center uk-flex-middle">
+    
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<form action="~/" method="post" class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+    <fieldset class="uk-fieldset">
+        <div class="uk-margin">
+            <input class="uk-input" type="text" placeholder="ID" asp-for="Id">
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="password" placeholder="Password" asp-for="Password">
+        </div>
+        <div>
+            <button type="submit" class="uk-button uk-button-primary">LogIn</button>
+        </div>
+    </fieldset>
+</form>
+
 </div>
