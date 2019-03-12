@@ -16,9 +16,10 @@ namespace repack.Controllers
     public class HomeController : Controller
     {
         private readonly UserModel _userModel;
+       
         public HomeController(Db db, AppSetting appSetting)
         {
-            _userModel = new UserModel(db, appSetting.Salt);
+            _userModel = new UserModel(db, appSetting);
         }
         public IActionResult Index()
         {
@@ -35,6 +36,7 @@ namespace repack.Controllers
         public async Task<IActionResult> Index(LoginViewModel vModel)
         {
             if (!ModelState.IsValid) return View(vModel);
+            
             var user = await _userModel.Login(vModel.Id, vModel.Password);
             if (user != null)
             {

@@ -26,7 +26,9 @@
         "RepackDbUser": "repack",
         "RepackDbPassword": "repack",
         "RepackDbName": "repack",
-        "RepackDbPort": "5432"
+        "RepackDbPort": "5432",
+        "RepackAdminId": "repack",
+        "RepackAdminPassword": "repack"
       }
     }
   }

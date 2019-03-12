@@ -53,9 +53,13 @@ namespace repack
             });
             services.AddHttpClient();
 
-
             // di
-            services.AddSingleton(new AppSetting() {Salt = Configuration.GetValue<string>("RepackSalt")});
+            services.AddSingleton(new AppSetting()
+            {
+                Salt = Configuration.GetValue<string>("RepackSalt"),
+                AdminId = Configuration.GetValue<string>("RepackAdminId"),
+                AdminPassword = Configuration.GetValue<string>("RepackAdminPassword")
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

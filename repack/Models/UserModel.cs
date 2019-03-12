@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using repack.Entities;
 using Task = repack.Entities.Task;
@@ -13,11 +14,11 @@ namespace repack.Models
     public class UserModel
     {
         private readonly Db _db;
-        private readonly string _salt;
-        public UserModel(Db db, string salt)
+        private readonly AppSetting _appSetting;
+        public UserModel(Db db, AppSetting appSetting)
         {
             _db = db;
-            _salt = salt;
+            _appSetting = appSetting;
         }
 
         /// <summary>
@@ -47,8 +48,16 @@ namespace repack.Models
         /// <returns></returns>
         public async Task<User> Login(string id, string password)
         {
-            password = ToPassword(password);
-            return await _db.Users.FirstOrDefaultAsync(u => u.Name == id && u.Password == password);
+            // check admin
+            if (_appSetting.AdminId == id && _appSetting.AdminPassword == password)
+            {
+                return new User() {Name = id, IsAdmin = true};
+            }
+            else
+            {
+                password = ToPassword(password);
+                return await _db.Users.FirstOrDefaultAsync(u => u.Name == id && u.Password == password);
+            }
         }
 
         /// <summary>
@@ -123,7 +132,7 @@ namespace repack.Models
             var result = src;
             for (var i = 0; i < 10000; i++)
             {
-                result = Sha256(result + _salt);
+                result = Sha256(result + _appSetting.Salt);
             }
 
             return result;

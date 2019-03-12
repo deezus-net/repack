@@ -14,7 +14,7 @@ namespace repack.Controllers
 
         public UserController(Entities.Db db, AppSetting appSetting)
         {
-            _userModel = new UserModel(db, appSetting.Salt);
+            _userModel = new UserModel(db, appSetting);
         }
 
         /// <summary>

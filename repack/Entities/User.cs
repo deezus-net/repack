@@ -20,5 +20,8 @@ namespace repack.Entities
         
         [Column("created")]
         public  DateTime Created { get; set; }
+        
+        [NotMapped]
+        public bool IsAdmin { get; set; }
     }
 }
