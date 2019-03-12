@@ -12,6 +12,7 @@
     <thead>
     <tr>
         <th>Name</th>
+        <th>End Point URL</th>
         <th></th>
     </tr>
     </thead>
@@ -20,6 +21,7 @@
     {
         <tr>
             <td>@stack.Name</td>
+            <td>@(Model.BaseURL)/webhook/@(stack.Token)</td>
             <td class="text-right">
                 <a href="~/stack/edit/@stack.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
                 <a href="~/task/@stack.Id" class="mr-2 btn btn-sm btn-info">Tasks</a>

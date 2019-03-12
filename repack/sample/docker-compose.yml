@@ -1,13 +1,15 @@
 version: '2'
 services:
   repack:
-    image: repack
+    image: deezus/repack
     environment:
       RepackDbHost: postgres
       RepackDbPort: 5432
       RepackDbUser: repack
       RepackDbPassword: repack
       RepackDbName: repack
+      RepackAdminId: repack
+      RepackAdminPassword: repack
     ports:
       - "9999:80"
     depends_on:

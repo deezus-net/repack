@@ -25,7 +25,11 @@ namespace repack.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index()
         {
-            var vModel = new StackViewModel {Stacks = await _stackModel.GetList()};
+            var vModel = new StackViewModel
+            {
+                Stacks = await _stackModel.GetList(),
+                BaseURL = $"{Request.Scheme}://{Request.Host.ToUriComponent()}{Request.PathBase.ToUriComponent()}"
+            };
             return View(vModel);
         }
         
