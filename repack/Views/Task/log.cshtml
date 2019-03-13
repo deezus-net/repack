@@ -18,7 +18,7 @@
     @foreach (var log in Model.Logs)
     {
         <tr>
-            <td>@log.Created.ToString("yyyy-MM-dd hh:mm:ss")</td>
+            <td>@log.Created.ToString("yyyy-MM-dd HH:mm:ss")</td>
             <td><input type="text" class="form-control" value="@log.Url" readonly="readonly"/></td>
             <td>
                 <textarea class="form-control" rows="5" readonly="readonly">@log.Content</textarea>
