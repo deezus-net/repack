@@ -1,15 +1,48 @@
 @model repack.ViewModels.UserViewModel
-<form action="~/user/edit/@(Model.User.Id > 0 ? Model.User.Id.ToString() : "")" method="post">
-    <fieldset class="uk-fieldset">
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="ID" asp-for="User.Name" />
+<div class="row mt-5">
+    <div class="col-6">
+        <a href="~/user/" class="btn btn-secondary">Back</a>
+    </div>
+</div>
+<form class="mt-3" action="~/user/edit/@(Model.User.Id > 0 ? Model.User.Id.ToString() : "")" method="post">
+    <div class="form-group">
+        <label for="name">Login ID</label>
+        @if (Model.User.Id > 0)
+        {
+            <input type="text" class="form-control" id="name" placeholder="User Name" asp-for="User.Name" readonly="readonly">
+        }
+        else
+        {
+            <input type="text" class="form-control@(ViewData.ModelState.ContainsKey("User.Name") ? " is-invalid" : "")" id="name" placeholder="User Name" asp-for="User.Name">
+        }
+        @if (ViewData.ModelState.ContainsKey("User.Name"))
+        {
+            foreach (var error in ViewData.ModelState["User.Name"].Errors)
+            {
+                <div class="invalid-feedback">@error.ErrorMessage</div>
+            }
+        }
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control@(ViewData.ModelState.ContainsKey("User.Password") ? " is-invalid" : "")" id="password" placeholder="Password" asp-for="User.Password" />
+        @if (ViewData.ModelState.ContainsKey("User.Password"))
+        {
+            foreach (var error in ViewData.ModelState["User.Password"].Errors)
+            {
+                <div class="invalid-feedback">@error.ErrorMessage</div>
+            }
+        }
+    </div>
+    
+    @if (Model.User.Id > 0)
+    {
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="delete" asp-for="Delete">
+            <label class="form-check-label" for="delete">Delete</label>
         </div>
-        <div class="uk-margin">
-            <input class="uk-input" type="password" placeholder="password" asp-for="User.Password" />
-        </div>
-        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-            <label><input class="uk-checkbox" type="checkbox" asp-for="Delete">削除</label>
-        </div>
-        <button type="submit" class="uk-button uk-button-primary">保存</button>
-    </fieldset>
+    }
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>

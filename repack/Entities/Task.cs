@@ -15,6 +15,7 @@ namespace repack.Entities
         [Column("stack_id")]
         public int StackId { get; set; }
         
+        [Required]
         [Column("name")]
         public string Name { get; set; }
         
@@ -31,5 +32,7 @@ namespace repack.Entities
         public DateTime Created { get; set; }
         
         public Stack Stack { get; set; }
+   
+
     }
 }

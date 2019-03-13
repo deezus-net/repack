@@ -21,9 +21,9 @@ namespace repack.Models
         /// </summary>
         /// <param name="stackId"></param>
         /// <returns></returns>
-        public async Task<List<ReceivedLog>> GetReceivedLog(int stackId)
+        public async Task<List<ReceivedLog>> GetReceivedLog(int stackId, int count = 10)
         {
-            return await _db.ReceivedLogs.Where(l => l.StackId == stackId).OrderByDescending(l => l.Created)
+            return await _db.ReceivedLogs.Where(l => l.StackId == stackId).OrderByDescending(l => l.Created).Take(count)
                 .ToListAsync();
         }
 
@@ -50,15 +50,16 @@ namespace repack.Models
 
             return result;
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="taskId"></param>
+        /// <param name="count"></param>
         /// <returns></returns>
-        public async Task<List<SentLog>> GetSentLog(int taskId)
+        public async Task<List<SentLog>> GetSentLog(int taskId, int count = 10)
         {
-            return await _db.SentLogs.Where(l => l.TaskId == taskId).OrderByDescending(l => l.Created)
+            return await _db.SentLogs.Where(l => l.TaskId == taskId).OrderByDescending(l => l.Created).Take(count)
                 .ToListAsync();
         }
         

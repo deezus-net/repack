@@ -65,6 +65,27 @@ namespace repack.Models
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
+        public async Task<bool> CheckUserName(User user)
+        {
+            if (_appSetting.AdminId == user.Name)
+            {
+                return false;
+            }
+
+            if (user.Id > 0)
+            {
+                return true;
+            }
+
+            var otherUser = await _db.Users.FirstOrDefaultAsync(u => u.Id != user.Id && u.Name == user.Name);
+            return otherUser == null;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public async Task<bool> Update(User user)
         {
             var result = false;

@@ -17,4 +17,8 @@ body{
     padding: 1.6rem;
 }
 
-
+.help pre{
+    border: 1px solid #bbb;
+    padding: 0.2rem;
+    background: #f0f0f0;
+}

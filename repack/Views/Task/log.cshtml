@@ -2,7 +2,7 @@
 <div class="row mt-5">
     <div class="col-6">
         <a href="~/task/@Model.StackId" class="btn btn-secondary">Back</a>
-
+        <span class="ml-2">recent 10 logs</span>
     </div>
 </div>
 <table class="table table-striped mt-3">
@@ -18,8 +18,8 @@
     @foreach (var log in Model.Logs)
     {
         <tr>
-            <td>@log.Created</td>
-            <td>@log.Url</td>
+            <td>@log.Created.ToString("yyyy-MM-dd hh:mm:ss")</td>
+            <td><input type="text" class="form-control" value="@log.Url" readonly="readonly"/></td>
             <td>
                 <textarea class="form-control" rows="5" readonly="readonly">@log.Content</textarea>
             </td>

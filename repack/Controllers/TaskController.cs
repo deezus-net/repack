@@ -42,7 +42,7 @@ namespace repack.Controllers
         [HttpGet("log/{stackId}/{id}")]
         public async Task<IActionResult> Log(int stackId, int id)
         {
-            var vModel = new TaskViewModel { StackId = stackId, Logs = await _logModel.GetSentLog(id) };
+            var vModel = new TaskViewModel { StackId = stackId, Logs = await _logModel.GetSentLog(id, 10) };
             return View(vModel);
         }
 
@@ -70,7 +70,7 @@ namespace repack.Controllers
         {
             vModel.Task.Id = vModel.Id;
             vModel.Task.StackId = vModel.StackId;
-            if (!ModelState.IsValid) return View(vModel);
+            
             var result = false;
             if (vModel.Delete)
             {
@@ -78,6 +78,7 @@ namespace repack.Controllers
             }
             else
             {
+                if (!ModelState.IsValid) return View(vModel);
                 vModel.Task.Content = JsonConvert.SerializeObject(vModel.TaskContent);
                 result = await _taskModel.Update(vModel.Task);
             }

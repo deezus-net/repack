@@ -40,7 +40,7 @@ namespace repack.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Log(int id)
         {
-            var vModel = new StackViewModel { Logs = await _logModel.GetReceivedLog(id) };
+            var vModel = new StackViewModel { Logs = await _logModel.GetReceivedLog(id, 10) };
             return View(vModel);
         }
         
@@ -65,7 +65,6 @@ namespace repack.Controllers
         public async Task<IActionResult> Edit(int id, StackViewModel vModel)
         {
             vModel.Stack.Id = id;
-            if (!ModelState.IsValid) return View(vModel);
             var result = false;
             if (vModel.Delete)
             {
@@ -73,6 +72,7 @@ namespace repack.Controllers
             }
             else
             {
+                if (!ModelState.IsValid) return View(vModel);
                 result = await _stackModel.Update(vModel.Stack);
             }
 

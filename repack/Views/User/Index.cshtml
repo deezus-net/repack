@@ -1,12 +1,28 @@
 @model repack.ViewModels.UserViewModel
-<a href="~/user/edit/">新規作成</a>
-<table>
-@foreach (var user in Model.Users)
-{
-    <tr>
-        <td>@user.Name</td>
-        <td><a href="~/user/edit/@user.Id">編集</a></td>
-    </tr>    
-}
+<div class="row mt-5">
+    <div class="col-6">
 
+    </div>
+    <div class="col-6 text-right">
+        <a href="~/user/edit/" class="btn btn-primary">Create User</a>
+    </div>
+</div>
+<table class="table table-striped mt-3">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model.Users)
+    {
+        <tr>
+            <td>@user.Name</td>
+            <td class="text-right">
+                <a href="~/user/edit/@user.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
+            </td>
+        </tr>
+    }
+    </tbody>
 </table>

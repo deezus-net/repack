@@ -16,5 +16,10 @@ namespace repack.ViewModels
         public List<SentLog>Logs { get; set; }
         
         public bool Delete { get; set; }
+
+        public TaskViewModel()
+        {
+            GlobalMenu = "stack";
+        }
     }
 }

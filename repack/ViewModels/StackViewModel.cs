@@ -11,5 +11,10 @@ namespace repack.ViewModels
         public List<ReceivedLog> Logs { get; set; }
         
         public bool Delete { get; set; }
+
+        public StackViewModel()
+        {
+            GlobalMenu = "stack";
+        }
     }
 }

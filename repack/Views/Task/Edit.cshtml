@@ -7,15 +7,33 @@
 <form class="mt-3" action="~/task/edit/@(Model.StackId)/@(Model.Id > 0 ? Model.Id.ToString() : "")" method="post">
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Task Name" asp-for="Task.Name">
+        <input type="text" class="form-control@(ViewData.ModelState.ContainsKey("Task.Name") ? " is-invalid" : "")" id="name" placeholder="Task Name" asp-for="Task.Name">
+        @if (ViewData.ModelState.ContainsKey("Task.Name"))
+        {
+            <div class="invalid-feedback">
+                @ViewData.ModelState["Task.Name"].Errors[0].ErrorMessage
+            </div>
+        }
     </div>
     <div class="form-group">
         <label for="url">URL</label>
-        <input type="text" class="form-control" id="url" placeholder="URL" asp-for="TaskContent.Url">
+        <input type="text" class="form-control@(ViewData.ModelState.ContainsKey("TaskContent.Url") ? " is-invalid" : "")" id="url" placeholder="URL" asp-for="TaskContent.Url">
+        @if (ViewData.ModelState.ContainsKey("TaskContent.Url"))
+        {
+            <div class="invalid-feedback">
+                @ViewData.ModelState["TaskContent.Url"].Errors[0].ErrorMessage
+            </div>
+        }
     </div>
     <div class="form-group">
         <label for="body">Request Body</label>
-        <textarea class="form-control" id="body" placeholder="URL" rows="10" asp-for="TaskContent.Body"></textarea>
+        <textarea class="form-control@(ViewData.ModelState.ContainsKey("TaskContent.Body") ? " is-invalid" : "")" id="body" placeholder="URL" rows="10" asp-for="TaskContent.Body"></textarea>
+        @if (ViewData.ModelState.ContainsKey("TaskContent.Body"))
+        {
+            <div class="invalid-feedback">
+                @ViewData.ModelState["TaskContent.Body"].Errors[0].ErrorMessage
+            </div>
+        }
     </div>
     @if (Model.Task.Id > 0)
     {

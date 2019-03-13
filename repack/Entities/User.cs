@@ -1,5 +1,7 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 namespace repack.Entities
 {
@@ -9,6 +11,7 @@ namespace repack.Entities
         [Column("id")]
         public int Id { get; set; }
         
+        [Required]
         [Column("name")]
         public string Name { get; set; }
         
@@ -23,5 +26,6 @@ namespace repack.Entities
         
         [NotMapped]
         public bool IsAdmin { get; set; }
+
     }
 }

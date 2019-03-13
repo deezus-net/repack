@@ -9,5 +9,10 @@ namespace repack.ViewModels
         public List<User>Users { get; set; }
         
         public bool Delete { get; set; }
+
+        public UserViewModel()
+        {
+            GlobalMenu = "user";
+        }
     }
 }
