@@ -9,25 +9,32 @@
 
     </div>
 </div>
-<table class="table table-striped mt-3">
-    <thead>
-    <tr>
-        <th>No.</th>
-        <th>Task Name</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var task in Model.Tasks)
-    {
+@if (Model.Tasks.Any())
+{
+    <table class="table table-striped mt-3">
+        <thead>
         <tr>
-            <td>@task.OrderNo</td>
-            <td>@task.Name</td>
-            <td class="text-right">
-                <a href="~/task/edit/@Model.StackId/@task.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
-                <a href="~/task/log/@Model.StackId/@task.Id" class="btn btn-sm btn-warning">Log</a>
-            </td>
+            <th>No.</th>
+            <th>Task Name</th>
+            <th></th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var task in Model.Tasks)
+        {
+            <tr>
+                <td>@task.OrderNo</td>
+                <td>@task.Name</td>
+                <td class="text-right">
+                    <a href="~/task/edit/@Model.StackId/@task.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
+                    <a href="~/task/log/@Model.StackId/@task.Id" class="btn btn-sm btn-warning">Log</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="alert alert-secondary mt-3 text-center">No Tasks</p>
+}

@@ -18,14 +18,14 @@ namespace repack.Entities
         [Column("password")]
         public string Password { get; set; }
         
+        [Column("type")]
+        public string Type { get; set; }
+        
         [Column("modified")]
         public DateTime Modified { get; set; }
         
         [Column("created")]
         public  DateTime Created { get; set; }
-        
-        [NotMapped]
-        public bool IsAdmin { get; set; }
 
     }
 }

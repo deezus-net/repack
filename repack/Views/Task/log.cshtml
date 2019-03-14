@@ -2,31 +2,41 @@
 <div class="row mt-5">
     <div class="col-6">
         <a href="~/task/@Model.StackId" class="btn btn-secondary">Back</a>
-        <span class="ml-2">recent 10 logs</span>
+        @if (Model.Logs.Any())
+        {
+            <span class="ml-2">recent @(Model.Logs.Count) logs</span>
+        }
     </div>
 </div>
-<table class="table table-striped mt-3">
-    <thead>
-    <tr>
-        <th>Date</th>
-        <th>URL</th>
-        <th>Content</th>
-        <th>Response</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var log in Model.Logs)
-    {
+@if (Model.Logs.Any())
+{
+    <table class="table table-striped mt-3">
+        <thead>
         <tr>
-            <td>@log.Created.ToString("yyyy-MM-dd HH:mm:ss")</td>
-            <td><input type="text" class="form-control" value="@log.Url" readonly="readonly"/></td>
-            <td>
-                <textarea class="form-control" rows="5" readonly="readonly">@log.Content</textarea>
-            </td>
-            <td>
-                <textarea class="form-control" rows="5" readonly="readonly">@log.Response</textarea>
-            </td>
+            <th>Date</th>
+            <th>URL</th>
+            <th>Content</th>
+            <th>Response</th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var log in Model.Logs)
+        {
+            <tr>
+                <td>@log.Created.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td><input type="text" class="form-control" value="@log.Url" readonly="readonly"/></td>
+                <td>
+                    <textarea class="form-control" rows="5" readonly="readonly">@log.Content</textarea>
+                </td>
+                <td>
+                    <textarea class="form-control" rows="5" readonly="readonly">@log.Response</textarea>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="alert alert-secondary mt-3 text-center">Has Never Sent</p>
+}

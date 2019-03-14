@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using repack.Classes;
 using repack.Entities;
 using Task = repack.Entities.Task;
 
@@ -51,7 +52,7 @@ namespace repack.Models
             // check admin
             if (_appSetting.AdminId == id && _appSetting.AdminPassword == password)
             {
-                return new User() {Name = id, IsAdmin = true};
+                return new User() {Name = id, Type = Define.AccountType.Administrator };
             }
             else
             {
@@ -105,7 +106,7 @@ namespace repack.Models
                     {
                         currentUser.Password = ToPassword(user.Password);
                     }
-
+                    currentUser.Type = user.Type;
                     currentUser.Modified = DateTime.Now;
                 }
 

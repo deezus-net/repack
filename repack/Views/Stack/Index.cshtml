@@ -7,27 +7,33 @@
         <a href="~/stack/edit/" class="btn btn-primary">Create Stack</a>
     </div>
 </div>
-
-<table class="table table-striped mt-3">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>End Point URL</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var stack in Model.Stacks)
-    {
+@if (Model.Stacks.Any())
+{
+    <table class="table table-striped mt-3">
+        <thead>
         <tr>
-            <td>@stack.Name</td>
-            <td>@(Model.BaseURL)/webhook/@(stack.Token)</td>
-            <td class="text-right">
-                <a href="~/stack/edit/@stack.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
-                <a href="~/task/@stack.Id" class="mr-2 btn btn-sm btn-info">Tasks</a>
-                <a href="~/stack/log/@stack.Id" class="btn btn-sm btn-warning">Log</a>
-            </td>
+            <th>Name</th>
+            <th>End Point URL</th>
+            <th></th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var stack in Model.Stacks)
+        {
+            <tr>
+                <td>@stack.Name</td>
+                <td>@(Model.BaseURL)/webhook/@(stack.Token)</td>
+                <td class="text-right">
+                    <a href="~/stack/edit/@stack.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
+                    <a href="~/task/@stack.Id" class="mr-2 btn btn-sm btn-info">Tasks</a>
+                    <a href="~/stack/log/@stack.Id" class="btn btn-sm btn-warning">Log</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="alert alert-secondary mt-3 text-center">No Stacks</p>
+}

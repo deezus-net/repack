@@ -2,13 +2,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using repack.Classes;
 using repack.Entities;
 using repack.Models;
 using repack.ViewModels;
 
 namespace repack.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = Define.AccountType.Administrator)]
     public class UserController : Controller
     {
         private readonly UserModel _userModel;

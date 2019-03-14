@@ -7,22 +7,29 @@
         <a href="~/user/edit/" class="btn btn-primary">Create User</a>
     </div>
 </div>
-<table class="table table-striped mt-3">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var user in Model.Users)
-    {
+@if (Model.Users.Any())
+{
+    <table class="table table-striped mt-3">
+        <thead>
         <tr>
-            <td>@user.Name</td>
-            <td class="text-right">
-                <a href="~/user/edit/@user.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
-            </td>
+            <th>Name</th>
+            <th></th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td class="text-right">
+                    <a href="~/user/edit/@user.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="alert alert-secondary mt-3 text-center">No Users</p>
+}

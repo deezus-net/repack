@@ -96,6 +96,9 @@ tables:
         type: varchar
         length: 64
         notNull: true
+      type:
+        type: varchar
+        length: 20
       modified:
         type: timestamp
         notNull: true

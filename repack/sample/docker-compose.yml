@@ -3,6 +3,7 @@ services:
   repack:
     image: deezus/repack
     environment:
+      RepackSalt: CMK-HjAH4X2Sn!x9%m~D
       RepackDbHost: postgres
       RepackDbPort: 5432
       RepackDbUser: repack
