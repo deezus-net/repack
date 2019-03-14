@@ -10,7 +10,11 @@ namespace repack.Classes
             var tmp = path.Split(".")
                 .Aggregate<string, JToken>(null, (current, p) => current == null ? obj[p] : current[p]);
 
-            return tmp?.Value<string>() ?? "";
+            var result = tmp?.Value<string>() ?? "";
+            result = result.Replace("\r\n", "\\r\\n");
+            result = result.Replace("\n", "\\n");
+            
+            return result;
         }
     }
 }

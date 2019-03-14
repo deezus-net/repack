@@ -35,7 +35,7 @@ namespace repack.Controllers
         /// <param name="post"></param>
         /// <returns></returns>
         [HttpPost("{token}")]
-        public async Task<ApiResponse> Index(string token/*, [FromBody] JObject post*/)
+        public async Task<ApiResponse> Index(string token)
         {
             var result = new ApiResponse();
             var stack = await _stackModel.GetByToken(token);
