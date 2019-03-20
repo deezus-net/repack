@@ -1,11 +1,13 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model repack.ViewModels.TaskViewModel
+@inject IViewLocalizer Localizer
 <div class="row mt-5">
     <div class="col-6">
-        <a href="~/stack/" class="btn btn-secondary">Back</a>
+        <a href="~/stack/" class="btn btn-secondary">@Localizer["LabelBack"]</a>
 
     </div>
     <div class="col-6 text-right">
-        <a href="~/task/edit/@Model.StackId" class="btn btn-primary">Create Task</a>
+        <a href="~/task/edit/@Model.StackId" class="btn btn-primary">@Localizer["LabelCreateTask"]</a>
 
     </div>
 </div>
@@ -14,8 +16,8 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
-            <th>No.</th>
-            <th>Task Name</th>
+            <th>@Localizer["ThNumber"]</th>
+            <th>@Localizer["ThName"]</th>
             <th></th>
         </tr>
         </thead>
@@ -26,8 +28,8 @@
                 <td>@task.OrderNo</td>
                 <td>@task.Name</td>
                 <td class="text-right">
-                    <a href="~/task/edit/@Model.StackId/@task.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
-                    <a href="~/task/log/@Model.StackId/@task.Id" class="btn btn-sm btn-warning">Log</a>
+                    <a href="~/task/edit/@Model.StackId/@task.Id" class="mr-2 btn btn-sm btn-success">@Localizer["LabelEdit"]</a>
+                    <a href="~/task/log/@Model.StackId/@task.Id" class="btn btn-sm btn-warning">@Localizer["LabelLogs"]</a>
                 </td>
             </tr>
         }
@@ -36,5 +38,5 @@
 }
 else
 {
-    <p class="alert alert-secondary mt-3 text-center">No Tasks</p>
+    <p class="alert alert-secondary mt-3 text-center">@Localizer["NoTask"]</p>
 }

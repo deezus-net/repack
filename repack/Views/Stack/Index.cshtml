@@ -1,10 +1,12 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model repack.ViewModels.StackViewModel
+@inject IViewLocalizer Localizer
 <div class="row mt-5">
     <div class="col-6">
 
     </div>
     <div class="col-6 text-right">
-        <a href="~/stack/edit/" class="btn btn-primary">Create Stack</a>
+        <a href="~/stack/edit/" class="btn btn-primary">@Localizer["LabelCreateStack"]</a>
     </div>
 </div>
 @if (Model.Stacks.Any())
@@ -12,8 +14,8 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>End Point URL</th>
+            <th>@Localizer["ThName"]</th>
+            <th>@Localizer["ThEndPoint"]</th>
             <th></th>
         </tr>
         </thead>
@@ -24,9 +26,9 @@
                 <td>@stack.Name</td>
                 <td>@(Model.BaseURL)/webhook/@(stack.Token)</td>
                 <td class="text-right">
-                    <a href="~/stack/edit/@stack.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
-                    <a href="~/task/@stack.Id" class="mr-2 btn btn-sm btn-info">Tasks</a>
-                    <a href="~/stack/log/@stack.Id" class="btn btn-sm btn-warning">Log</a>
+                    <a href="~/stack/edit/@stack.Id" class="mr-2 btn btn-sm btn-success">@Localizer["LabelEdit"]</a>
+                    <a href="~/task/@stack.Id" class="mr-2 btn btn-sm btn-info">@Localizer["LabelTasks"]</a>
+                    <a href="~/stack/log/@stack.Id" class="btn btn-sm btn-warning">@Localizer["LabelLogs"]</a>
                 </td>
             </tr>
         }
@@ -35,5 +37,5 @@
 }
 else
 {
-    <p class="alert alert-secondary mt-3 text-center">No Stacks</p>
+    <p class="alert alert-secondary mt-3 text-center">@Localizer["NoStack"]</p>
 }

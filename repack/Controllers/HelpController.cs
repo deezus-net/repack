@@ -9,7 +9,7 @@ namespace repack.Controllers
         public IActionResult Index()
         {
             var vModel = new HelpViewModel();
-            return View("JP", vModel);
+            return View(vModel);
         }
     }
 }

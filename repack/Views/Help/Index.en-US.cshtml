@@ -1,0 +1,58 @@
+@model repack.ViewModels.HelpViewModel
+<div class="mt-5 row help">
+    <div class="col-3">
+        <ul class="nav flex-column">
+            <li class="nav-item"><a href="#overview" class="nav-link">about Re-Pack</a></li>
+            <li class="nav-item"><a href="#basic-usage" class="nav-link">Basic Usage</a></li>
+        </ul>
+    </div>
+    <div class="col-9">
+        <div id="overview" class="card">
+            <div class="card-body">
+                <h5 class="card-title">Re-Packについて</h5>
+                <p>
+                    Re-PackはWebHookを受け取り、別のシステムへJSONをPOSTしシステム同士を中継する為のシステムです
+                </p>
+            </div>
+        </div>
+        <div id="basic-usage" class="card mt-5">
+            <div class="card-body">
+                <h5 class="card-title">基本的な使い方</h5>
+                <h6>スタックの作成</h6>
+                <p class="mb-5">
+                    WebHookを受け付ける為にスタックを作成します<br />
+                    エンドポイントにJSONがPOSTされると、配下のタスクが順番に実行されます
+                </p>
+                <h6>タスクの追加</h6>
+                <p class="mb-5">
+                    作成したスタックにタスクを追加します<br />
+                    POST送信先のURLとJSONを設定します
+                </p>
+                <h6>送信JSON内の変数</h6>
+                <p>
+                    受信したJSONの値を{{xxxxx}}の形式で埋め込むことができます<br />
+                    例として下記のようなJSONを受信した場合
+                    <pre>
+{
+    "detailMessage": {
+        "markdown": "hogehoge"
+    }
+}
+</pre>
+                    下記のように送信JSONを定義すると
+                    <pre>
+{
+    "text": "{{detailMessage.markdown}}"
+}
+</pre>
+                    変数が置換され、下記のようなJSONが送信されます
+                    <pre>
+{
+    "text": "hogehoge"
+}
+</pre>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

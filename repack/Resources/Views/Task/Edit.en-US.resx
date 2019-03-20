@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="LabelBack">
+        <value>Back</value>
+    </data>
+    <data name="LabelName">
+        <value>Name</value>
+    </data>
+    <data name="LabelURL">
+        <value>URL</value>
+    </data>
+    <data name="LabelRequestBody">
+        <value>Request Body</value>
+    </data>
+    <data name="LabelDelete">
+        <value>Delete</value>
+    </data>
+    <data name="LabelSubmit">
+        <value>Submit</value>
+    </data>
+    <data name="RequiredTaskName">
+        <value>The Name field is required.</value>
+    </data>
+    <data name="RequiredTaskURL">
+        <value>The URL field is required.</value>
+    </data>
+    <data name="RequiredTaskRequestBody">
+        <value>The Request Body field is required.</value>
+    </data>
+
+</root>

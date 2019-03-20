@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using repack.Entities;
 using repack.Models;
 using repack.ViewModels;
@@ -16,7 +17,7 @@ namespace repack.Controllers
     public class HomeController : Controller
     {
         private readonly UserModel _userModel;
-       
+        
         public HomeController(Db db, AppSetting appSetting)
         {
             _userModel = new UserModel(db, appSetting);
@@ -52,6 +53,10 @@ namespace repack.Controllers
                     new ClaimsPrincipal(claimsIdentity), authProperties);
                 
                 return Redirect("~/stack/");
+            }
+            else
+            {
+                ModelState.AddModelError("Id", "AuthId");
             }
             return View(vModel);
         }

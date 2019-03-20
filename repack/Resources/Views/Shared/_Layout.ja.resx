@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <data name="MenuStacks">
+        <value>スタック</value>
+    </data>
+    <data name="MenuUsers">
+        <value>ユーザー</value>
+    </data>
+    <data name="MenuHelp">
+        <value>ヘルプ</value>
+    </data>
+    <data name="MenuLogout">
+        <value>ログアウト</value>
+    </data>
+</root>

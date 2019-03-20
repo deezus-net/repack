@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="LabelCreateUser">
+        <value>ユーザー作成</value>
+    </data>
+    <data name="ThName">
+        <value>ユーザー名</value>
+    </data>
+    <data name="LabelEdit">
+        <value>編集</value>
+    </data>
+    <data name="NoUsers">
+        <value>ユーザーが存在しません</value>
+    </data>
+</root>

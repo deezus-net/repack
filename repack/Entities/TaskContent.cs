@@ -5,10 +5,10 @@ namespace repack.Entities
     public class TaskContent
     {
         public string Type { get; set; }
-        [Required]
+        [Required(ErrorMessage = "RequiredTaskURL")]
         public string Url { get; set; }
         public string Method { get; set; }
-        [Required]
+        [Required(ErrorMessage = "RequiredTaskRequestBody")]
         public string Body { get; set; }
     }
 }

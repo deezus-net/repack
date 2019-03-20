@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <data name="LabelCreateStack">
+        <value>Create Stack</value>
+    </data>
+    <data name="ThName">
+        <value>Name</value>
+    </data>
+    <data name="ThEndPoint">
+        <value>End Point URL</value>
+    </data>
+    <data name="LabelEdit">
+        <value>Edit</value>
+    </data>
+    <data name="LabelTasks">
+        <value>Tasks</value>
+    </data>
+    <data name="LabelLogs">
+        <value>Logs</value>
+    </data>
+    <data name="NoStack">
+        <value>No Stacks</value>
+    </data>
+</root>

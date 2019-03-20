@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="LabelBack">
+        <value>戻る</value>
+    </data>
+    <data name="LabelRecent">
+        <value>最新</value>
+    </data>
+    <data name="LabelLogs">
+        <value>ログ</value>
+    </data>
+    <data name="ThDate">
+        <value>日時</value>
+    </data>
+    <data name="ThURL">
+        <value>URL</value>
+    </data>
+    <data name="ThContent">
+        <value>送信内容</value>
+    </data>
+    <data name="ThResponse">
+        <value>結果</value>
+    </data>
+    <data name="LabelNoLogs">
+        <value>ログがありません</value>
+    </data>
+</root>

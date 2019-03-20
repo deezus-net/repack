@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <data name="LabelBack">
+        <value>Back</value>
+    </data>
+    <data name="LabelID">
+        <value>Login ID</value>
+    </data>
+    <data name="LabelPassword">
+        <value>Password</value>
+    </data>
+    <data name="LabelUserType">
+        <value>User Type</value>
+    </data>
+    <data name="LabelDelete">
+        <value>Delete</value>
+    </data>
+    <data name="LabelSubmit">
+        <value>Submit</value>
+    </data>
+    <data name="RequiredUserName">
+        <value>The Login ID field is required.</value>
+    </data>
+    <data name="DuplicateLoginID">
+        <value>Duplicate Login ID.</value>
+    </data>
+    <data name="RequiredUserPassword">
+        <value>The Password field is required.</value>
+    </data>
+
+    <data name="UserTypeCommon">
+        <value>User</value>
+    </data>
+    <data name="UserTypeAdmin">
+        <value>Administrator</value>
+    </data>
+</root>

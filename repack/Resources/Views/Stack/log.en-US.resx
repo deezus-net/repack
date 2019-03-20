@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <data name="LabelBack">
+        <value>Back</value>
+    </data>
+    <data name="LabelRecent">
+        <value>recent</value>
+    </data>
+    <data name="LabelLogs">
+        <value>logs</value>
+    </data>
+    <data name="ThDate">
+        <value>Date</value>
+    </data>
+    <data name="ThRequestHeader">
+        <value>Request Header</value>
+    </data>
+    <data name="ThRequestBody">
+        <value>Request Body</value>
+    </data>
+    <data name="LabelNoLogs">
+        <value>Has Never Received</value>
+    </data>
+</root>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <data name="LabelCreateUser">
+        <value>Create User</value>
+    </data>
+    <data name="ThName">
+        <value>Name</value>
+    </data>
+    <data name="LabelEdit">
+        <value>Edit</value>
+    </data>
+    <data name="NoUsers">
+        <value>No Users</value>
+    </data>
+</root>

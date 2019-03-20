@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <data name="LabelId">
+        <value>ID</value>
+    </data>
+    <data name="LabelPassword">
+        <value>Password</value>
+    </data>
+    <data name="LabelLogin">
+        <value>Login</value>
+    </data>
+    <data name="RequiredId">
+        <value>The ID field is required.</value>
+    </data>
+    <data name="RequiredPassword">
+        <value>The Password field is required.</value>
+    </data>
+    <data name="AuthId">
+        <value>Authentication failure.</value>
+    </data>
+</root>

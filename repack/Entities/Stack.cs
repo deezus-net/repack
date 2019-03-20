@@ -12,7 +12,7 @@ namespace repack.Entities
         [Column("id")]
         public int Id { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "RequiredStackName")]
         [Column("name")]
         public string Name { get; set; }
         

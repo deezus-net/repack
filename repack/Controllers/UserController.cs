@@ -61,15 +61,17 @@ namespace repack.Controllers
                 {
                     if (string.IsNullOrWhiteSpace(vModel.User.Password))
                     {
-                        ModelState.AddModelError("User.Password", "The Password field is required.");
+                        ModelState.AddModelError("User.Password", "RequiredUserPassword");
+                        result = false;
+                    }
+                    
+                    if (!(await _userModel.CheckUserName(vModel.User)))
+                    {
+                        ModelState.AddModelError("User.Name", "DuplicateLoginID");
                         result = false;
                     }
                 }
-                else if (!(await _userModel.CheckUserName(vModel.User)))
-                {
-                    ModelState.AddModelError("User.Name", "Duplicate Login ID");
-                    result = false;
-                }
+                
 
                 if (!ModelState.IsValid) return View(vModel);
                 result = await _userModel.Update(vModel.User);

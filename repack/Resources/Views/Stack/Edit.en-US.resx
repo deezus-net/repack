@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <data name="LabelBack">
+        <value>Back</value>
+    </data>
+    <data name="LabelName">
+        <value>Name</value>
+    </data>
+    <data name="LabelDelete">
+        <value>Delete</value>
+    </data>
+    <data name="LabelSubmit">
+        <value>Submit</value>
+    </data>
+    <data name="RequiredStackName">
+        <value>The Name field is required.</value>
+    </data>
+</root>

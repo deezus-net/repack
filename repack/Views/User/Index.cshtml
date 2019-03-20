@@ -1,10 +1,12 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model repack.ViewModels.UserViewModel
+@inject IViewLocalizer Localizer
 <div class="row mt-5">
     <div class="col-6">
 
     </div>
     <div class="col-6 text-right">
-        <a href="~/user/edit/" class="btn btn-primary">Create User</a>
+        <a href="~/user/edit/" class="btn btn-primary">@Localizer["LabelCreateUser"]</a>
     </div>
 </div>
 @if (Model.Users.Any())
@@ -12,7 +14,7 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>@Localizer["ThName"]</th>
             <th></th>
         </tr>
         </thead>
@@ -22,7 +24,7 @@
             <tr>
                 <td>@user.Name</td>
                 <td class="text-right">
-                    <a href="~/user/edit/@user.Id" class="mr-2 btn btn-sm btn-success">Edit</a>
+                    <a href="~/user/edit/@user.Id" class="mr-2 btn btn-sm btn-success">@Localizer["LabelEdit"]</a>
                 </td>
             </tr>
         }
@@ -31,5 +33,5 @@
 }
 else
 {
-    <p class="alert alert-secondary mt-3 text-center">No Users</p>
+    <p class="alert alert-secondary mt-3 text-center">@Localizer["NoUsers"]</p>
 }

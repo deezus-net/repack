@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="LabelBack">
+        <value>戻る</value>
+    </data>
+    <data name="LabelName">
+        <value>名前</value>
+    </data>
+    <data name="LabelURL">
+        <value>URL</value>
+    </data>
+    <data name="LabelRequestBody">
+        <value>リクエストボディ</value>
+    </data>
+    <data name="LabelDelete">
+        <value>削除</value>
+    </data>
+    <data name="LabelSubmit">
+        <value>保存</value>
+    </data>
+    <data name="RequiredTaskName">
+        <value>名前を入力してください</value>
+    </data>
+    <data name="RequiredTaskURL">
+        <value>URLを入力してください</value>
+    </data>
+    <data name="RequiredTaskRequestBody">
+        <value>リクエストボディを入力してください</value>
+    </data>
+    
+</root>

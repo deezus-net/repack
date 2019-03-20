@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="LabelBack">
+        <value>戻る</value>
+    </data>
+    <data name="LabelID">
+        <value>ログインID</value>
+    </data>
+    <data name="LabelPassword">
+        <value>パスワード</value>
+    </data>
+    <data name="LabelUserType">
+        <value>ユーザータイプ</value>
+    </data>
+    <data name="LabelDelete">
+        <value>削除</value>
+    </data>
+    <data name="LabelSubmit">
+        <value>保存</value>
+    </data>
+    <data name="RequiredUserName">
+        <value>ログインIDを入力してください</value>
+    </data>
+    <data name="DuplicateLoginID">
+        <value>すでに使用されています</value>
+    </data>
+    <data name="RequiredUserPassword">
+        <value>パスワードを入力してください</value>
+    </data>
+    
+    <data name="UserTypeCommon">
+        <value>ユーザー</value>
+    </data>
+    <data name="UserTypeAdmin">
+        <value>管理者</value>
+    </data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="LabelId">
+        <value>ID</value>
+    </data>
+    <data name="LabelPassword">
+        <value>パスワード</value>
+    </data>
+    <data name="LabelLogin">
+        <value>ログイン</value>
+    </data>
+    <data name="RequiredId">
+        <value>IDを入力してください</value>
+    </data>
+    <data name="RequiredPassword">
+        <value>パスワードを入力してください</value>
+    </data>
+    <data name="AuthId">
+        <value>認証に失敗しました</value>
+    </data>
+</root>

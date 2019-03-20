@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="LabelCreateStack">
+        <value>スタック作成</value>
+    </data>
+    <data name="ThName">
+        <value>スタック名</value>
+    </data>
+    <data name="ThEndPoint">
+        <value>エンドポイントURL</value>
+    </data>
+    <data name="LabelEdit">
+        <value>編集</value>
+    </data>
+    <data name="LabelTasks">
+        <value>タスク</value>
+    </data>
+    <data name="LabelLogs">
+        <value>ログ</value>
+    </data>
+    <data name="NoStack">
+        <value>スタックが存在しません</value>
+    </data>
+</root>

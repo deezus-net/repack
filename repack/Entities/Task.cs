@@ -15,7 +15,7 @@ namespace repack.Entities
         [Column("stack_id")]
         public int StackId { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "RequiredTaskName")]
         [Column("name")]
         public string Name { get; set; }
         

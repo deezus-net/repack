@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="LabelCreateTask">
+        <value>タスク作成</value>
+    </data>
+    <data name="LabelBack">
+        <value>戻る</value>
+    </data>
+    <data name="ThNumber">
+        <value>No.</value>
+    </data>
+    <data name="ThName">
+        <value>タスク名</value>
+    </data>
+    <data name="LabelEdit">
+        <value>編集</value>
+    </data>
+    <data name="LabelLogs">
+        <value>ログ</value>
+    </data>
+    <data name="NoTask">
+        <value>スタックが存在しません</value>
+    </data>
+</root>

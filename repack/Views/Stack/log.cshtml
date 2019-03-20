@@ -1,10 +1,12 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model repack.ViewModels.StackViewModel
+@inject IViewLocalizer Localizer
 <div class="row mt-5">
     <div class="col-6">
-        <a href="~/stack/" class="btn btn-secondary">Back</a>
+        <a href="~/stack/" class="btn btn-secondary">@Localizer["LabelBack"]</a>
         @if (Model.Logs.Any())
         {
-            <span class="ml-2">recent @(Model.Logs.Count) logs</span>
+            <span class="ml-2">@Localizer["LabelRecent"] @(Model.Logs.Count) @Localizer["LabelLogs"]</span>
         }
     </div>
 </div>
@@ -13,9 +15,9 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
-            <th>Date</th>
-            <th>Request Header</th>
-            <th>Request Body</th>
+            <th>@Localizer["ThDate"]</th>
+            <th>@Localizer["ThRequestHeader"]</th>
+            <th>@Localizer["ThRequestBody"]</th>
         </tr>
         </thead>
         <tbody>
@@ -36,5 +38,5 @@
 }
 else
 {
-    <p class="alert alert-secondary mt-3 text-center">Has Never Received</p>
+    <p class="alert alert-secondary mt-3 text-center">@Localizer["LabelNoLogs"]</p>
 }

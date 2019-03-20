@@ -1,10 +1,12 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model repack.ViewModels.TaskViewModel
+@inject IViewLocalizer Localizer
 <div class="row mt-5">
     <div class="col-6">
-        <a href="~/task/@Model.StackId" class="btn btn-secondary">Back</a>
+        <a href="~/task/@Model.StackId" class="btn btn-secondary">@Localizer["LabelBack"]</a>
         @if (Model.Logs.Any())
         {
-            <span class="ml-2">recent @(Model.Logs.Count) logs</span>
+            <span class="ml-2">@Localizer["LabelRecent"] @(Model.Logs.Count) @Localizer["LabelLogs"]</span>
         }
     </div>
 </div>
@@ -13,10 +15,10 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
-            <th>Date</th>
-            <th>URL</th>
-            <th>Content</th>
-            <th>Response</th>
+            <th>@Localizer["ThDate"]</th>
+            <th>@Localizer["ThURL"]</th>
+            <th>@Localizer["ThContent"]</th>
+            <th>@Localizer["ThResponse"]</th>
         </tr>
         </thead>
         <tbody>

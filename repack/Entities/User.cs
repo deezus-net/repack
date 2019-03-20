@@ -11,7 +11,7 @@ namespace repack.Entities
         [Column("id")]
         public int Id { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "RequiredUserName")]
         [Column("name")]
         public string Name { get; set; }
         
