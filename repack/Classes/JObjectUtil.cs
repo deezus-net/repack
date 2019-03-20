@@ -11,9 +11,10 @@ namespace repack.Classes
                 .Aggregate<string, JToken>(null, (current, p) => current == null ? obj[p] : current[p]);
 
             var result = tmp?.Value<string>() ?? "";
+            result = result.Replace("\\", "\\\\");
             result = result.Replace("\r\n", "\\r\\n");
             result = result.Replace("\n", "\\n");
-            
+
             return result;
         }
     }
