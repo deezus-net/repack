@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "update": "dac update -H $RepackDbHost -t postgres -u $RepackDbUser -p $RepackDbPassword -d $RepackDbName -i db.yml",
-    "update-dev": "dac update -H localhost -t postgres -u repack -p repack -d repack -i db.yml"
+    "update-dev": "dac update -H localhost -t postgres -u repack -p repack -d repack -i db.yml",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",

@@ -14,6 +14,7 @@ RUN apt-get update && \
     curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get install -y nodejs npm && \
     npm install && \
+    npm run build && \
     chmod +x ./entrypoint.sh
 EXPOSE 80
 ENTRYPOINT ["./entrypoint.sh"] 
