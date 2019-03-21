@@ -7,6 +7,8 @@ FROM mcr.microsoft.com/dotnet/core/aspnet
 COPY --from=sdk /src/publish /repack
 COPY ./entrypoint.sh /repack/entrypoint.sh
 COPY ./db.yml /repack/db.yml
+COPY ./tsconfig.json /repack/tsconfig.json
+COPY ./webpack.config.js /repack/webpack.config.js
 COPY ./package.json /repack/package.json
 WORKDIR /repack
 RUN apt-get update && \
