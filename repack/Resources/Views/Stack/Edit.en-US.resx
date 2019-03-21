@@ -7,6 +7,12 @@
     <data name="LabelName">
         <value>Name</value>
     </data>
+    <data name="LabelEndPoint">
+        <value>End Point</value>
+    </data>
+    <data name="LabelTokenRefresh">
+        <value>Refresh</value>
+    </data>
     <data name="LabelDelete">
         <value>Delete</value>
     </data>

@@ -19,6 +19,18 @@
     </div>
     @if (Model.Stack.Id > 0)
     {
+        <div class="form-group">
+            <label for="token">@Localizer["LabelEndPoint"]</label>
+            <div class="form-row align-items-center">
+                <div class="col-auto">@(Model.BaseURL)/webhook/</div>
+                <div class="col">
+                    <input type="text" class="form-control" id="token" placeholder="Token" asp-for="Stack.Token" readonly="readonly">
+                </div>
+                <div class="col-auto">
+                    <button type="button" id="get-token" class="btn btn-secondary">@Localizer["LabelTokenRefresh"]</button>
+                </div>
+            </div>
+        </div>
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="delete" asp-for="Delete">
             <label class="form-check-label" for="delete">@Localizer["LabelDelete"]</label>
@@ -28,3 +40,4 @@
         <button type="submit" class="btn btn-primary">@Localizer["LabelSubmit"]</button>
     </div>
 </form>
+<script src="~/js/stack-edit.js"></script>

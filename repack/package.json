@@ -6,13 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "update": "dac update -H $RepackDbHost -t postgres -u $RepackDbUser -p $RepackDbPassword -d $RepackDbName -i db.yml",
-    "update-dev": "dac update -H localhost -t postgres -u repack -p repack -d repack -i db.yml",
-    "echo": "echo $SHELL"
+    "update-dev": "dac update -H localhost -t postgres -u repack -p repack -d repack -i db.yml"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@deezus/dac": "0.0.6"
+    "@deezus/dac": "0.0.6",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.4000",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
   }
 }

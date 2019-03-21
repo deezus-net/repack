@@ -51,7 +51,11 @@ namespace repack.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Edit(int id)
         {
-            var vModel = new StackViewModel {Stack = (await _stackModel.Get(id)) ?? new Stack()};
+            var vModel = new StackViewModel
+            {
+                BaseURL = $"{Request.Scheme}://{Request.Host.ToUriComponent()}{Request.PathBase.ToUriComponent()}",
+                Stack = (await _stackModel.Get(id)) ?? new Stack()
+            };
             return View(vModel);
         }
 

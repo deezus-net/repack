@@ -67,6 +67,10 @@ namespace repack.Models
                 else
                 {
                     currentStack.Name = stack.Name;
+                    if (!string.IsNullOrWhiteSpace(stack.Token))
+                    {
+                        currentStack.Token = stack.Token;
+                    }
                     currentStack.Modified = DateTime.Now;
                 }
 
