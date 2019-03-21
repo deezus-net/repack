@@ -5,5 +5,5 @@ workflow "Main Workflow" {
 
 action "Hello World" {
   uses = "echo"
-  args = "\"Hello world\"""
+  args = "\"Hello world\""
 }
