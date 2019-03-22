@@ -5,6 +5,6 @@ workflow "Main Workflow" {
 
 action "npm" {
   uses = "docker://node"
-  runs = "ls"
+  runs = "cd repack && npm install"
 }
 
