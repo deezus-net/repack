@@ -4,6 +4,6 @@ workflow "Main Workflow" {
 }
 
 action "npm" {
-  uses = "docker://node"
-  runs = "npm install"
+  uses = "actions/npm@master"
+  args = "install"
 }
