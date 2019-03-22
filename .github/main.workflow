@@ -1,9 +1,9 @@
 workflow "Main Workflow" {
   on = "push"
-  resolves = ["Hello World"]
+  resolves = ["npm"]
 }
 
-action "Hello World" {
-  uses = "echo"
-  args = "\"Hello world\""
+action "npm" {
+  uses = "docker://node"
+  runs = "npm install"
 }
