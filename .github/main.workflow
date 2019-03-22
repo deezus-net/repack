@@ -5,6 +5,6 @@ workflow "Main Workflow" {
 
 action "npm" {
   uses = "docker://node"
-  runs = "npm —prefix ./repack install ./repack"
+  runs = "npm prefix ./repack install ./repack"
 }
 
