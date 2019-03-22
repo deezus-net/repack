@@ -43,7 +43,7 @@ namespace repack.Models
         /// <returns></returns>
         public async Task<Stack> GetByToken(string token)
         {
-            return await _db.Stacks.Include(s => s.Tasks).FirstOrDefaultAsync(s => s.Token == token);
+            return await _db.Stacks.Include(s => s.Tasks).FirstOrDefaultAsync(s => s.Token == token && s.Enabled);
         }
 
         /// <summary>
@@ -62,6 +62,7 @@ namespace repack.Models
                     stack.Modified = DateTime.Now;
                     stack.Created = DateTime.Now;
                     stack.Token = Guid.NewGuid().ToString("N");
+                    stack.Enabled = true;
                     await _db.Stacks.AddAsync(stack);
                 }
                 else
@@ -71,6 +72,7 @@ namespace repack.Models
                     {
                         currentStack.Token = stack.Token;
                     }
+                    currentStack.Enabled = stack.Enabled;
                     currentStack.Modified = DateTime.Now;
                 }
 

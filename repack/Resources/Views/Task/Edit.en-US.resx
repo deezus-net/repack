@@ -12,6 +12,9 @@
     <data name="LabelRequestBody">
         <value>Request Body</value>
     </data>
+    <data name="LabelEnabled">
+        <value>Enabled</value>
+    </data>
     <data name="LabelDelete">
         <value>Delete</value>
     </data>

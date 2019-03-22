@@ -1,4 +1,5 @@
 @using Microsoft.AspNetCore.Mvc.Localization
+@using repack.Entities
 @model repack.ViewModels.TaskViewModel
 @inject IViewLocalizer Localizer
 <div class="row mt-5">
@@ -13,7 +14,7 @@
 </div>
 @if (Model.Tasks.Any())
 {
-    <table class="table table-striped mt-3">
+    <table class="table mt-3">
         <thead>
         <tr>
             <th>@Localizer["ThNumber"]</th>
@@ -24,12 +25,12 @@
         <tbody>
         @foreach (var task in Model.Tasks)
         {
-            <tr>
-                <td>@task.OrderNo</td>
-                <td>@task.Name</td>
-                <td class="text-right">
-                    <a href="~/task/edit/@Model.StackId/@task.Id" class="mr-2 btn btn-sm btn-success">@Localizer["LabelEdit"]</a>
-                    <a href="~/task/log/@Model.StackId/@task.Id" class="btn btn-sm btn-warning">@Localizer["LabelLogs"]</a>
+            <tr@(!task.Enabled ? Html.Raw(" class=\"table-secondary\"") : null)>
+                <td class="align-middle">@task.OrderNo</td>
+                <td class="align-middle">@task.Name</td>
+                <td class="align-middle text-right">
+                    <a href="~/task/edit/@Model.StackId/@task.Id" class="mr-2 btn btn-sm @(task.Enabled? "btn-success" : "btn-secondary")">@Localizer["LabelEdit"]</a>
+                    <a href="~/task/log/@Model.StackId/@task.Id" class="btn btn-sm @(task.Enabled ? "btn-warning" : "btn-secondary")">@Localizer["LabelLogs"]</a>
                 </td>
             </tr>
         }

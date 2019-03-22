@@ -25,6 +25,9 @@ namespace repack.Entities
         [Column("content")]
         public string Content { get; set; }
         
+        [Column("enabled")]
+        public bool Enabled { get; set; }
+        
         [Column("modified")]
         public DateTime Modified { get; set; }
         

@@ -19,6 +19,9 @@ namespace repack.Entities
         [Column("token")]
         public string Token { get; set; }
         
+        [Column("enabled")]
+        public bool Enabled { get; set; }
+        
         [Column("modified")]
         public DateTime Modified { get; set; }
         

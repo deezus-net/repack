@@ -12,6 +12,9 @@
     <data name="LabelTokenRefresh">
         <value>再取得</value>
     </data>
+    <data name="LabelEnabled">
+        <value>有効</value>
+    </data>
     <data name="LabelDelete">
         <value>削除</value>
     </data>

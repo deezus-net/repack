@@ -11,7 +11,7 @@
 </div>
 @if (Model.Stacks.Any())
 {
-    <table class="table table-striped mt-3">
+    <table class="table mt-3">
         <thead>
         <tr>
             <th>@Localizer["ThName"]</th>
@@ -22,13 +22,13 @@
         <tbody>
         @foreach (var stack in Model.Stacks)
         {
-            <tr>
-                <td>@stack.Name</td>
-                <td>@(Model.BaseURL)/webhook/@(stack.Token)</td>
-                <td class="text-right">
-                    <a href="~/stack/edit/@stack.Id" class="mr-2 btn btn-sm btn-success">@Localizer["LabelEdit"]</a>
-                    <a href="~/task/@stack.Id" class="mr-2 btn btn-sm btn-info">@Localizer["LabelTasks"]</a>
-                    <a href="~/stack/log/@stack.Id" class="btn btn-sm btn-warning">@Localizer["LabelLogs"]</a>
+            <tr@(!stack.Enabled ? Html.Raw(" class=\"table-secondary\"") : null)>
+                <td class="align-middle">@stack.Name</td>
+                <td class="align-middle">@(Model.BaseURL)/webhook/@(stack.Token)</td>
+                <td class="align-middle text-right">
+                    <a href="~/stack/edit/@stack.Id" class="mr-2 btn btn-sm @(stack.Enabled ? "btn-success" : "btn-secondary")">@Localizer["LabelEdit"]</a>
+                    <a href="~/task/@stack.Id" class="mr-2 btn btn-sm @(stack.Enabled ? "btn-info" : "btn-secondary")">@Localizer["LabelTasks"]</a>
+                    <a href="~/stack/log/@stack.Id" class="btn btn-sm @(stack.Enabled ? "btn-warning" : "btn-secondary")">@Localizer["LabelLogs"]</a>
                 </td>
             </tr>
         }

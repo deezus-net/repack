@@ -48,6 +48,7 @@ namespace repack.Models
                 var currentTask = await _db.Tasks.FindAsync(task.Id);
                 if (currentTask == null)
                 {
+                    task.Enabled = true;
                     task.Modified = DateTime.Now;
                     task.Created = DateTime.Now;
                     task.OrderNo = await _db.Tasks.Where(t => t.StackId == task.StackId).Select(t => t.OrderNo).DefaultIfEmpty(0).MaxAsync() + 1;
@@ -57,6 +58,7 @@ namespace repack.Models
                 {
                     currentTask.Name = task.Name;
                     currentTask.Content = task.Content;
+                    currentTask.Enabled = task.Enabled;
                     currentTask.Modified = DateTime.Now;
                 }
 

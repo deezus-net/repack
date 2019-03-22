@@ -13,6 +13,9 @@
     <data name="LabelTokenRefresh">
         <value>Refresh</value>
     </data>
+    <data name="LabelEnabled">
+        <value>Enabled</value>
+    </data>
     <data name="LabelDelete">
         <value>Delete</value>
     </data>

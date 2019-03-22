@@ -31,6 +31,10 @@
                 </div>
             </div>
         </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="enabled" asp-for="Stack.Enabled">
+            <label class="form-check-label" for="enabled">@Localizer["LabelEnabled"]</label>
+        </div>
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="delete" asp-for="Delete">
             <label class="form-check-label" for="delete">@Localizer["LabelDelete"]</label>

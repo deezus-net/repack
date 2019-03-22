@@ -62,7 +62,7 @@ namespace repack.Controllers
                 
                 var webHook = new WebHook(post, _httpClientFactory);
                 
-                foreach (var task in stack.Tasks)
+                foreach (var task in stack.Tasks.Where(t => t.Enabled))
                 {
                     var taskContent = JsonConvert.DeserializeObject<TaskContent>(task.Content);
                     var (sentBody, response) = await webHook.Send(taskContent);

@@ -11,6 +11,10 @@ tables:
         type: varchar
         length: 32
         notNull: true
+      enabled:
+        type: boolean
+        notNull: true
+        default: true
       modified:
         type: timestamp
         notNull: true
@@ -37,6 +41,10 @@ tables:
       content:
         type: text
         notNull: true
+      enabled:
+        type: boolean
+        notNull: true
+        default: true
       modified:
         type: timestamp
         notNull: true
