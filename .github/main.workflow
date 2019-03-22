@@ -4,6 +4,7 @@ workflow "Main Workflow" {
 }
 
 action "npm" {
-  uses = "actions/npm@master"
-  args = "install"
+  uses = "docker://node"
+  runs = "npm —prefix ./repack install ./repack"
 }
+
