@@ -6,6 +6,9 @@
     <data name="LabelName">
         <value>名前</value>
     </data>
+    <data name="LabelCondition">
+        <value>条件</value>
+    </data>
     <data name="LabelURL">
         <value>URL</value>
     </data>
@@ -30,5 +33,10 @@
     <data name="RequiredTaskRequestBody">
         <value>リクエストボディを入力してください</value>
     </data>
-    
+    <data name="ConditionTypeEqual">
+        <value>等しい(=)</value>
+    </data>
+    <data name="ConditionTypeNotEqual">
+        <value>等しくない(!=)</value>
+    </data>
 </root>

@@ -6,6 +6,9 @@
     <data name="LabelName">
         <value>Name</value>
     </data>
+    <data name="LabelCondition">
+        <value>Condition</value>
+    </data>
     <data name="LabelURL">
         <value>URL</value>
     </data>
@@ -30,5 +33,10 @@
     <data name="RequiredTaskRequestBody">
         <value>The Request Body field is required.</value>
     </data>
-
+    <data name="ConditionTypeEqual">
+        <value>Equal(=)</value>
+    </data>
+    <data name="ConditionTypeNotEqual">
+        <value>NotEqual(!=)</value>
+    </data>
 </root>

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,12 @@ namespace repack.Classes
         /// <returns></returns>
         public async Task<(string, HttpResponseMessage)> Send(TaskContent content)
         {
+            if (!CheckCondition(content))
+            {
+                return (null, null);
+            }
+
+
             var body = content.Body;
             foreach (var (text, path) in GetPropertyName(content.Body))
             {
@@ -34,7 +41,9 @@ namespace repack.Classes
             try
             {
                 var httpClient = _httpClientFactory.CreateClient();
-                return (body, await httpClient.PostAsync(content.Url, new StringContent(body, Encoding.UTF8, "application/json")));
+                return (body,
+                    await httpClient.PostAsync(content.Url,
+                        new StringContent(body, Encoding.UTF8, "application/json")));
             }
             catch (Exception e)
             {
@@ -42,6 +51,33 @@ namespace repack.Classes
 
 
             return (body, null);
+        }
+
+        private bool CheckCondition(TaskContent content)
+        {
+            if (string.IsNullOrWhiteSpace(content.ConditionKey) || string.IsNullOrWhiteSpace(content.ConditionType) ||
+                string.IsNullOrWhiteSpace(content.ConditionValue))
+            {
+                return true;
+            }
+
+            var (text, path) = GetPropertyName(content.ConditionKey).FirstOrDefault();
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return false;
+            }
+            var value = Post.Search(path);
+            switch (content.ConditionType)
+            {
+                case Define.TaskConditionType.Equal:
+                    return value == content.ConditionValue;
+                    break;
+                case Define.TaskConditionType.NotEqual:
+                    return value != content.ConditionValue;
+                    break;
+                default:
+                    return true;
+            }
         }
     }
 }

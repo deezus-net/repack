@@ -1,4 +1,5 @@
 @using Microsoft.AspNetCore.Mvc.Localization
+@using repack.Classes
 @model repack.ViewModels.TaskViewModel
 @inject IViewLocalizer Localizer
 <div class="row mt-5">
@@ -16,6 +17,24 @@
                 @Localizer[ViewData.ModelState["Task.Name"].Errors[0].ErrorMessage]
             </div>
         }
+    </div>
+    <div class="form-group">
+        <label for="conditionKey">@Localizer["LabelCondition"]</label>
+        <div class="form-row">
+            <div class="col">
+                <input type="text" asp-for="TaskContent.ConditionKey" id="conditionKey" class="form-control" />
+            </div>
+            <div class="col">
+                <select asp-for="TaskContent.ConditionType" class="form-control">
+                    <option value="@Define.TaskConditionType.Equal">@Localizer["ConditionTypeEqual"]</option>
+                    <option value="@Define.TaskConditionType.NotEqual">@Localizer["ConditionTypeNotEqual"]</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="text" asp-for="TaskContent.ConditionValue" class="form-control" />
+            </div>
+        </div>
+        
     </div>
     <div class="form-group">
         <label for="url">@Localizer["LabelURL"]</label>
