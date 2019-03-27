@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "repack", "repack\repack.csproj", "{04A05FEE-38A7-4EC2-90BE-B00300C8F960}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "repack.Test", "repack.Test\repack.Test.csproj", "{C3604762-CE16-4801-8260-65E66E44C974}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{04A05FEE-38A7-4EC2-90BE-B00300C8F960}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04A05FEE-38A7-4EC2-90BE-B00300C8F960}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04A05FEE-38A7-4EC2-90BE-B00300C8F960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3604762-CE16-4801-8260-65E66E44C974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3604762-CE16-4801-8260-65E66E44C974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3604762-CE16-4801-8260-65E66E44C974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3604762-CE16-4801-8260-65E66E44C974}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
