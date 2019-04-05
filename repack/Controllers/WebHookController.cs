@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using repack.Classes;
@@ -48,10 +50,23 @@ namespace repack.Controllers
                 var body = "";
                 var headers = HttpContext.Request.Headers.Keys.ToDictionary<string, string, string>(key => key, key => HttpContext.Request.Headers[key]);
 
-                using (var stream = new StreamReader(HttpContext.Request.Body))
+                
+
+                var contentType = HttpContext.Request.ContentType.ToLower();
+                if (contentType == "application/json")
                 {
-                    body = stream.ReadToEnd();
+                    using (var stream = new StreamReader(HttpContext.Request.Body))
+                    {
+                        body = stream.ReadToEnd();
+                    }
                 }
+                else if(contentType == "application/x-www-form-urlencoded")
+                {
+                    var data = HttpContext.Request.Form.ToDictionary<KeyValuePair<string, StringValues>, string, string>(form => form.Key, form => form.Value);
+                    body = JsonConvert.SerializeObject(data);
+                }
+                
+                
                 await _logModel.WriteReceivedLog(new ReceivedLog
                 {
                     StackId = stack.Id,
