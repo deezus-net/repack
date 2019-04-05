@@ -12,11 +12,11 @@
         <label for="name">@Localizer["LabelID"]</label>
         @if (Model.User.Id > 0)
         {
-            <input type="text" class="form-control" id="name" placeholder="User Name" asp-for="User.Name" readonly="readonly">
+            <input type="text" class="form-control" id="name" placeholder="@Localizer["LabelID"]" asp-for="User.Name" readonly="readonly">
         }
         else
         {
-            <input type="text" class="form-control@(ViewData.ModelState.ContainsKey("User.Name") ? " is-invalid" : "")" id="name" placeholder="User Name" asp-for="User.Name">
+            <input type="text" class="form-control@(ViewData.ModelState.ContainsKey("User.Name") ? " is-invalid" : "")" id="name" placeholder="@Localizer["LabelID"]" asp-for="User.Name">
         }
         @if (ViewData.ModelState.ContainsKey("User.Name"))
         {
@@ -28,7 +28,7 @@
     </div>
     <div class="form-group">
         <label for="password">@Localizer["LabelPassword"]</label>
-        <input type="password" class="form-control@(ViewData.ModelState.ContainsKey("User.Password") ? " is-invalid" : "")" id="password" placeholder="Password" asp-for="User.Password" />
+        <input type="password" class="form-control@(ViewData.ModelState.ContainsKey("User.Password") ? " is-invalid" : "")" id="password" placeholder="@Localizer["LabelPassword"]" asp-for="User.Password" />
         @if (ViewData.ModelState.ContainsKey("User.Password"))
         {
             foreach (var error in ViewData.ModelState["User.Password"].Errors)

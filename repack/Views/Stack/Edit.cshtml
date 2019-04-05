@@ -9,7 +9,7 @@
 <form class="mt-3" action="~/stack/edit/@(Model.Stack.Id > 0 ? Model.Stack.Id.ToString() : "")" method="post">
     <div class="form-group">
         <label for="name">@Localizer["LabelName"]</label>
-        <input type="text" class="form-control@(ViewData.ModelState.ContainsKey("Stack.Name") ? " is-invalid" : "")" id="name" placeholder="Stack Name" asp-for="Stack.Name">
+        <input type="text" class="form-control@(ViewData.ModelState.ContainsKey("Stack.Name") ? " is-invalid" : "")" id="name" placeholder="@Localizer["LabelName"]" asp-for="Stack.Name">
         @if (ViewData.ModelState.ContainsKey("Stack.Name"))
         {
             <div class="invalid-feedback">
