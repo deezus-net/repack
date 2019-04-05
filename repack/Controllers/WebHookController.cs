@@ -53,14 +53,14 @@ namespace repack.Controllers
                 
 
                 var contentType = HttpContext.Request.ContentType.ToLower();
-                if (contentType == "application/json")
+                if (contentType.Contains("application/json"))
                 {
                     using (var stream = new StreamReader(HttpContext.Request.Body))
                     {
                         body = stream.ReadToEnd();
                     }
                 }
-                else if(contentType == "application/x-www-form-urlencoded")
+                else if(contentType.Contains("application/x-www-form-urlencoded"))
                 {
                     var data = HttpContext.Request.Form.ToDictionary<KeyValuePair<string, StringValues>, string, string>(form => form.Key, form => form.Value);
                     body = JsonConvert.SerializeObject(data);
