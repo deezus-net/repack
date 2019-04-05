@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -64,16 +65,22 @@ namespace repack.Controllers
                         ModelState.AddModelError("User.Password", "RequiredUserPassword");
                         result = false;
                     }
-                    
+
                     if (!(await _userModel.CheckUserName(vModel.User)))
                     {
                         ModelState.AddModelError("User.Name", "DuplicateLoginID");
                         result = false;
                     }
                 }
-                
 
-                if (!ModelState.IsValid) return View(vModel);
+
+                if (!ModelState.IsValid)
+                {
+                    vModel.ErrorMessages = ModelState.Where(s => s.Value.Errors.Count > 0)
+                        .ToDictionary(s => s.Key, s => s.Value.Errors.Select(e => e.ErrorMessage).ToList());
+                    return View(vModel);
+                }
+
                 result = await _userModel.Update(vModel.User);
             }
 

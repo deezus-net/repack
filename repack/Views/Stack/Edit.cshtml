@@ -10,10 +10,10 @@
     <div class="form-group">
         <label for="name">@Localizer["LabelName"]</label>
         <input type="text" class="form-control@(ViewData.ModelState.ContainsKey("Stack.Name") ? " is-invalid" : "")" id="name" placeholder="@Localizer["LabelName"]" asp-for="Stack.Name">
-        @if (ViewData.ModelState.ContainsKey("Stack.Name"))
+        @if (Model.ErrorMessages.ContainsKey("Stack.Name"))
         {
             <div class="invalid-feedback">
-                @Localizer[ViewData.ModelState["Stack.Name"].Errors[0].ErrorMessage]
+                @Localizer[Model.ErrorMessages["Stack.Name"].First()]
             </div>
         }
     </div>

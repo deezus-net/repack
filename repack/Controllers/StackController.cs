@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -76,7 +77,12 @@ namespace repack.Controllers
             }
             else
             {
-                if (!ModelState.IsValid) return View(vModel);
+                if (!ModelState.IsValid)
+                {
+                    vModel.ErrorMessages = ModelState.Where(s => s.Value.Errors.Count > 0)
+                        .ToDictionary(s => s.Key, s => s.Value.Errors.Select(e => e.ErrorMessage).ToList());
+                    return View(vModel);
+                }
                 result = await _stackModel.Update(vModel.Stack);
             }
 
@@ -84,6 +90,9 @@ namespace repack.Controllers
             {
                 return Redirect("~/stack/");
             }
+
+            
+
             return View(vModel);
         }
     }

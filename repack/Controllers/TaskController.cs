@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -70,7 +71,7 @@ namespace repack.Controllers
         {
             vModel.Task.Id = vModel.Id;
             vModel.Task.StackId = vModel.StackId;
-            
+
             var result = false;
             if (vModel.Delete)
             {
@@ -78,7 +79,13 @@ namespace repack.Controllers
             }
             else
             {
-                if (!ModelState.IsValid) return View(vModel);
+                if (!ModelState.IsValid)
+                {
+                    vModel.ErrorMessages = ModelState.Where(s => s.Value.Errors.Count > 0)
+                        .ToDictionary(s => s.Key, s => s.Value.Errors.Select(e => e.ErrorMessage).ToList());
+                    return View(vModel);
+                }
+
                 vModel.Task.Content = JsonConvert.SerializeObject(vModel.TaskContent);
                 result = await _taskModel.Update(vModel.Task);
             }
@@ -87,6 +94,8 @@ namespace repack.Controllers
             {
                 return Redirect($"~/task/{vModel.StackId}");
             }
+
+
             return View(vModel);
         }
     }
