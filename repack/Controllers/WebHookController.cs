@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -62,7 +63,17 @@ namespace repack.Controllers
                 }
                 else if(contentType.Contains("application/x-www-form-urlencoded"))
                 {
-                    var data = HttpContext.Request.Form.ToDictionary<KeyValuePair<string, StringValues>, string, string>(form => form.Key, form => form.Value);
+                    var data = HttpContext.Request.Form.ToDictionary<KeyValuePair<string, StringValues>, string, object>(form => form.Key, form =>
+                    {
+                        try
+                        {
+                            return JsonConvert.DeserializeObject(form.Value);
+                        }
+                        catch (Exception e)
+                        {
+                            return form.Value.Count > 1 ? (object)form.Value : form.Value.First();
+                        }
+                    });
                     body = JsonConvert.SerializeObject(data);
                 }
                 
