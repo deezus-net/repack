@@ -37,7 +37,7 @@ namespace repack.Controllers
         /// <param name="token"></param>
         /// <param name="post"></param>
         /// <returns></returns>
-        [HttpPost("{token}")]
+        [Route("{token}")]
         public async Task<ApiResponse> Index(string token)
         {
             var result = new ApiResponse();
@@ -50,8 +50,6 @@ namespace repack.Controllers
             {
                 var body = "";
                 var headers = HttpContext.Request.Headers.Keys.ToDictionary<string, string, string>(key => key, key => HttpContext.Request.Headers[key]);
-
-                
 
                 var contentType = HttpContext.Request.ContentType.ToLower();
                 if (contentType.Contains("application/json"))
