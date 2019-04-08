@@ -50,7 +50,6 @@ namespace repack.Controllers
             {
                 var body = "";
                 var headers = HttpContext.Request.Headers.Keys.ToDictionary<string, string, string>(key => key, key => HttpContext.Request.Headers[key]);
-
                 var contentType = HttpContext.Request.ContentType.ToLower();
                 if (contentType.Contains("application/json"))
                 {
@@ -79,6 +78,7 @@ namespace repack.Controllers
                 await _logModel.WriteReceivedLog(new ReceivedLog
                 {
                     StackId = stack.Id,
+                    Method = HttpContext.Request.Method,
                     Header = JsonConvert.SerializeObject(headers),
                     Body = body
                 });

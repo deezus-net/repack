@@ -13,6 +13,9 @@ namespace repack.Entities
         [Column("stack_id")]
         public int StackId { get; set; }
         
+        [Column("method")]
+        public string Method { get; set; }
+        
         [Column("header")]
         public string Header { get; set; }
         

@@ -58,6 +58,9 @@ tables:
       stack_id:
         type: int
         notNull: true
+      method:
+          type: varchar
+          length: 10
       header:
         type: text
       body:

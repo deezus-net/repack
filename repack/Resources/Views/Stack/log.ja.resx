@@ -12,6 +12,9 @@
     <data name="ThDate">
         <value>日時</value>
     </data>
+    <data name="ThRequestMethod">
+        <value>リクエストメソッド</value>
+    </data>
     <data name="ThRequestHeader">
         <value>リクエストヘッダー</value>
     </data>

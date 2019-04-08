@@ -13,6 +13,9 @@
     <data name="ThDate">
         <value>Date</value>
     </data>
+    <data name="ThRequestMethod">
+        <value>Request Method</value>
+    </data>
     <data name="ThRequestHeader">
         <value>Request Header</value>
     </data>

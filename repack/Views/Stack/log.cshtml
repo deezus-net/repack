@@ -16,6 +16,7 @@
         <thead>
         <tr>
             <th>@Localizer["ThDate"]</th>
+            <th>@Localizer["ThRequestMethod"]</th>
             <th>@Localizer["ThRequestHeader"]</th>
             <th>@Localizer["ThRequestBody"]</th>
         </tr>
@@ -25,6 +26,7 @@
         {
             <tr>
                 <td>@log.Created.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>@log.Method</td>
                 <td>
                     <textarea class="form-control" rows="5" readonly="readonly">@log.Header</textarea>
                 </td>
