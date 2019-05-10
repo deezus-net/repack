@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="LabelType">
+        <value>種別</value>
+    </data>
+    <data name="LogTypeAll">
+        <value>すべて</value>
+    </data>
+    <data name="LogTypeLoginSuccess">
+        <value>ログイン成功</value>
+    </data>
+    <data name="LogTypeLoginFailure">
+        <value>ログイン失敗</value>
+    </data>
+    <data name="LogTypeWebHook">
+        <value>WebHook</value>
+    </data>
+    <data name="LabelSearch">
+        <value>検索</value>
+    </data>
+    
+    
+    <data name="ThDate">
+        <value>日時</value>
+    </data>
+    <data name="ThType">
+        <value>種別</value>
+    </data>
+    <data name="ThMessage">
+        <value>メッセージ</value>
+    </data>
+    <data name="NoLog">
+        <value>ログが存在しません</value>
+    </data>
+</root>

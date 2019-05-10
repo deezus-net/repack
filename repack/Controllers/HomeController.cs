@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using repack.Classes;
 using repack.Entities;
 using repack.Models;
 using repack.ViewModels;
@@ -17,10 +18,12 @@ namespace repack.Controllers
     public class HomeController : Controller
     {
         private readonly UserModel _userModel;
+        private readonly SystemLogModel _systemLogModel;
         
         public HomeController(Db db, AppSetting appSetting)
         {
             _userModel = new UserModel(db, appSetting);
+            _systemLogModel = new SystemLogModel(db);
         }
         public IActionResult Index()
         {
@@ -51,11 +54,14 @@ namespace repack.Controllers
                 var authProperties = new AuthenticationProperties();
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity), authProperties);
-                
+
+                await _systemLogModel.Write(Define.LogType.LoginSuccess, vModel.Id);
+                                
                 return Redirect("~/stack/");
             }
             else
             {
+                await _systemLogModel.Write(Define.LogType.LoginFailure, vModel.Id);
                 ModelState.AddModelError("Id", "AuthId");
             }
             return View(vModel);

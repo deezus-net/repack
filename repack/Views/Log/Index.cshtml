@@ -1,0 +1,64 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using repack.Classes
+@model repack.ViewModels.LogViewModel
+@inject IViewLocalizer Localizer
+<div class="mt-5">
+    <form class="card">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="type">@Localizer["LabelType"]</label>
+                <select class="form-control" id="type" asp-for="Type">
+                    <option value="">@Localizer["LogTypeAll"]</option>
+                    <option value="@Define.LogType.LoginSuccess">@Localizer["LogTypeLoginSuccess"]</option>
+                    <option value="@Define.LogType.LoginFailure">@Localizer["LogTypeLoginFailure"]</option>
+                     <option value="@Define.LogType.WebHook">@Localizer["LogTypeWebHook"]</option>
+                </select>
+            </div>
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary">@Localizer["LabelSearch"]</button>
+            </div>
+        </div>
+    </form>
+    @if (Model.SystemLogs.Any())
+    {
+        <table class="table mt-3">
+            <thead>
+            <tr>
+                <th>@Localizer["ThDate"]</th>
+                <th>@Localizer["ThType"]</th>
+                <th>@Localizer["ThMessage"]</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var log in Model.SystemLogs)
+            {
+                <tr>
+                    <td class="align-middle">@log.Created.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td class="align-middle">
+                        @switch (log.Type)
+                        {
+                            case Define.LogType.LoginSuccess:
+                                @Localizer["LogTypeLoginSuccess"]
+                                break;
+                            case Define.LogType.LoginFailure:
+                                @Localizer["LogTypeLoginFailure"]
+                                break;
+                            case Define.LogType.WebHook:
+                                @Localizer["LogTypeWebHook"]
+                                break;
+                        }
+                    </td>
+                    <td class="align-middle">
+                        <textarea class="form-control" rows="5" readonly="readonly">@log.Message</textarea>
+                        
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="alert alert-secondary mt-3 text-center">@Localizer["NoLog"]</p>
+    }
+</div>
