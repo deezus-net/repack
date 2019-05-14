@@ -23,7 +23,7 @@ namespace repack.Models
             await _db.SaveChangesAsync();
         }
 
-        public async Task<List<SystemLog>> Search(string type, DateTime? from, DateTime? to)
+        public async Task<SearchResult<SystemLog>> Search(string type, DateTime? from, DateTime? to, int page)
         {
             var q = _db.SystemLogs.AsQueryable();
             if (!string.IsNullOrWhiteSpace(type))
@@ -41,7 +41,16 @@ namespace repack.Models
                 q = q.Where(l => l.Created < to);
             }
 
-            return await q.OrderByDescending(l => l.Created).ToListAsync();
+            var result = new SearchResult<SystemLog>
+            {
+                DataCount = await q.CountAsync(),
+                Page = page,
+            };
+            result.Data = await q.OrderByDescending(l => l.Created)
+                .Skip((page - 1) * result.DataPerPage).Take(result.DataPerPage).ToListAsync();
+
+
+            return result;
         }
     }
 }

@@ -11,7 +11,7 @@
                     <option value="">@Localizer["LogTypeAll"]</option>
                     <option value="@Define.LogType.LoginSuccess">@Localizer["LogTypeLoginSuccess"]</option>
                     <option value="@Define.LogType.LoginFailure">@Localizer["LogTypeLoginFailure"]</option>
-                     <option value="@Define.LogType.WebHook">@Localizer["LogTypeWebHook"]</option>
+                    <option value="@Define.LogType.WebHook">@Localizer["LogTypeWebHook"]</option>
                 </select>
             </div>
             <div class="mt-3">
@@ -19,8 +19,10 @@
             </div>
         </div>
     </form>
-    @if (Model.SystemLogs.Any())
+    
+    @if (Model.SearchResult.DataCount > 0)
     {
+        @Html.Partial("Pager", Model)
         <table class="table mt-3">
             <thead>
             <tr>
@@ -30,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach (var log in Model.SystemLogs)
+            @foreach (var log in Model.SearchResult.Data)
             {
                 <tr>
                     <td class="align-middle">@log.Created.ToString("yyyy-MM-dd HH:mm:ss")</td>
@@ -49,13 +51,13 @@
                         }
                     </td>
                     <td class="align-middle">
-                        <textarea class="form-control" rows="5" readonly="readonly">@log.Message</textarea>
-                        
+                        <textarea class="form-control" rows="1" readonly="readonly">@log.Message</textarea>
                     </td>
                 </tr>
             }
             </tbody>
         </table>
+        @Html.Partial("Pager", Model)
     }
     else
     {

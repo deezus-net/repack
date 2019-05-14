@@ -24,7 +24,7 @@ namespace repack.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index(LogViewModel vModel)
         {
-            vModel.SystemLogs = await _systemLogModel.Search(vModel.Type, vModel.From, vModel.To);
+            vModel.SearchResult = await _systemLogModel.Search(vModel.Type, vModel.From, vModel.To, vModel.Page);
             return View(vModel);
         }
         
