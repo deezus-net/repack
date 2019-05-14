@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <data name="LabelType">
+        <value>Type</value>
+    </data>
+    <data name="LogTypeAll">
+        <value>All</value>
+    </data>
+    <data name="LogTypeLoginSuccess">
+        <value>Login Success</value>
+    </data>
+    <data name="LogTypeLoginFailure">
+        <value>Login Failure</value>
+    </data>
+    <data name="LogTypeWebHook">
+        <value>WebHook</value>
+    </data>
+    <data name="LabelSearch">
+        <value>Search</value>
+    </data>
+    
+    <data name="ThDate">
+        <value>DateTime</value>
+    </data>
+    <data name="ThType">
+        <value>Type</value>
+    </data>
+    <data name="ThMessage">
+        <value>Message</value>
+    </data>
+    <data name="NoLog">
+        <value>No Logs</value>
+    </data>
+</root>

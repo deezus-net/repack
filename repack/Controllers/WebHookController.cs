@@ -22,87 +22,106 @@ namespace repack.Controllers
     {
         private readonly StackModel _stackModel;
         private readonly LogModel _logModel;
+        private readonly SystemLogModel _systemLogModel;
         private readonly IHttpClientFactory _httpClientFactory;
         
         public WebHookController(Db db, IHttpClientFactory httpClientFactory)
         {
             _stackModel = new StackModel(db);
             _logModel = new LogModel(db);
+            _systemLogModel = new SystemLogModel(db);
             _httpClientFactory = httpClientFactory;
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="token"></param>
-        /// <param name="post"></param>
         /// <returns></returns>
         [Route("{token}")]
         public async Task<ApiResponse> Index(string token)
         {
-            var result = new ApiResponse();
-            var stack = await _stackModel.GetByToken(token);
-            if (stack == null)
+            var headers = HttpContext.Request.Headers.Keys.ToDictionary<string, string, string>(key => key, key => HttpContext.Request.Headers[key]);
+            var body = "";
+
+            var contentType = HttpContext.Request.ContentType.ToLower();
+            if (contentType.Contains("application/json"))
             {
-                result.Error = "Invalid token";
+                using (var stream = new StreamReader(HttpContext.Request.Body))
+                {
+                    body = stream.ReadToEnd();
+                }
             }
-            else
+            else if(contentType.Contains("application/x-www-form-urlencoded"))
             {
-                var body = "";
-                var headers = HttpContext.Request.Headers.Keys.ToDictionary<string, string, string>(key => key, key => HttpContext.Request.Headers[key]);
-                var contentType = HttpContext.Request.ContentType.ToLower();
-                if (contentType.Contains("application/json"))
+                var data = HttpContext.Request.Form.ToDictionary<KeyValuePair<string, StringValues>, string, object>(form => form.Key, form =>
                 {
-                    using (var stream = new StreamReader(HttpContext.Request.Body))
+                    try
                     {
-                        body = stream.ReadToEnd();
+                        return JsonConvert.DeserializeObject(form.Value);
                     }
-                }
-                else if(contentType.Contains("application/x-www-form-urlencoded"))
-                {
-                    var data = HttpContext.Request.Form.ToDictionary<KeyValuePair<string, StringValues>, string, object>(form => form.Key, form =>
+                    catch (Exception e)
                     {
-                        try
-                        {
-                            return JsonConvert.DeserializeObject(form.Value);
-                        }
-                        catch (Exception e)
-                        {
-                            return form.Value.Count > 1 ? (object)form.Value : form.Value.First();
-                        }
-                    });
-                    body = JsonConvert.SerializeObject(data);
-                }
-                
-                
-                await _logModel.WriteReceivedLog(new ReceivedLog
-                {
-                    StackId = stack.Id,
-                    Method = HttpContext.Request.Method,
-                    Header = JsonConvert.SerializeObject(headers),
-                    Body = body
+                        return form.Value.Count > 1 ? (object)form.Value : form.Value.First();
+                    }
                 });
-                var post = JObject.Parse(body);
-                
-                var webHook = new WebHook(post, _httpClientFactory);
-                
-                foreach (var task in stack.Tasks.Where(t => t.Enabled))
-                {
-                    var taskContent = JsonConvert.DeserializeObject<TaskContent>(task.Content);
-                    var (sentBody, response) = await webHook.Send(taskContent);
-                    if (response != null)
-                    {
-                        await _logModel.WriteSentLog(new SentLog()
-                        {
-                            TaskId = task.Id,
-                            Url = taskContent.Url,
-                            Content = sentBody,
-                            Response = await response.Content.ReadAsStringAsync()
-                        });
-                    }
-                }
-                result.Result = "OK";
+                body = JsonConvert.SerializeObject(data);
             }
+            
+            var result = new ApiResponse();
+
+            try
+            {
+                var stack = await _stackModel.GetByToken(token);
+                if (stack == null)
+                {
+                    result.Error = "Invalid token";
+
+                }
+                else
+                {
+                    await _logModel.WriteReceivedLog(new ReceivedLog
+                    {
+                        StackId = stack.Id,
+                        Header = JsonConvert.SerializeObject(headers),
+                        Body = body
+                    });
+                    var post = JObject.Parse(body);
+
+                    var webHook = new WebHook(post, _httpClientFactory);
+
+                    foreach (var task in stack.Tasks.Where(t => t.Enabled))
+                    {
+                        var taskContent = JsonConvert.DeserializeObject<TaskContent>(task.Content);
+                        var (sentBody, response) = await webHook.Send(taskContent);
+                        if (response != null)
+                        {
+                            await _logModel.WriteSentLog(new SentLog()
+                            {
+                                TaskId = task.Id,
+                                Url = taskContent.Url,
+                                Content = sentBody,
+                                Response = await response.Content.ReadAsStringAsync()
+                            });
+                        }
+                    }
+
+                    result.Result = "OK";
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            var message = new
+            {
+                Token = token,
+                Header = headers,
+                Body = body,
+                Result = result.Result
+            };
+            await _systemLogModel.Write(Define.LogType.WebHook, JsonConvert.SerializeObject(message));
 
             return result;
         }

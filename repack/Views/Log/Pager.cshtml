@@ -1,0 +1,52 @@
+@model repack.ViewModels.LogViewModel
+@{
+    var parameters = "?type=" + Model.Type + "&from=" + Model.From + "&to=" + Model.To + "&page=";
+}
+<div class="row mt-3">
+    <nav class="col">
+        <ul class="pagination">
+            @if (Model.Page > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="~/log/@(parameters)1" aria-label="Previous">
+                        <span aria-hidden="true">&laquo</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="~/log/@(parameters + (Model.SearchResult.Page-1))" aria-label="Previous">
+                        <span aria-hidden="true">&#139;</span>
+                    </a>
+                </li>
+            }
+            @for (var i = Model.SearchResult.StartPage; i <= Model.SearchResult.EndPage; i++)
+            {
+                if (i == Model.Page)
+                {
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">@i
+                            <span class="sr-only">(current)</span>
+                        </span>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="~/log/@(parameters + i)">@i</a></li>
+                }
+            }
+            @if (Model.Page < Model.SearchResult.MaxPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="~/log/@(parameters + (Model.Page + 1))" aria-label="Next">
+                        <span aria-hidden="true">&#155;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="~/log/@(parameters + Model.SearchResult.MaxPage)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                	
+            }
+        </ul>
+    </nav>
+</div>

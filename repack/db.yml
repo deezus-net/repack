@@ -116,4 +116,26 @@ tables:
       created:
         type: timestamp
         notNull: true
-      
+  
+  system_logs:
+    columns:
+      id:
+        id: true
+      type:
+        type: varchar
+        length: 20
+        notNull: true
+      message:
+        type: text
+        notNull: true
+      created:
+        type: timestamp
+        notNull: true
+    indexes:
+      ix_type:
+        columns:
+          type: ASC
+      ix_created:
+        columns:
+          created: ASC
+        
