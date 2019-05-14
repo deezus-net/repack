@@ -4,6 +4,9 @@
     <data name="MenuStacks">
         <value>スタック</value>
     </data>
+    <data name="MenuLogs">
+        <value>システムログ</value>
+    </data>
     <data name="MenuUsers">
         <value>ユーザー</value>
     </data>

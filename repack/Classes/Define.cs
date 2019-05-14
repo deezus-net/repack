@@ -13,5 +13,12 @@ namespace repack.Classes
             public const string Equal = "eq";
             public const string NotEqual = "neq";
         }
+
+        public class LogType
+        {
+            public const string LoginSuccess = "login_sucess";
+            public const string LoginFailure = "login_failure";
+            public const string WebHook = "webhook";
+        }
     }
 }
