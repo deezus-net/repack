@@ -39,7 +39,8 @@ namespace repack
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+                op => { op.LoginPath = "/"; });
 
             var builder = new NpgsqlConnectionStringBuilder
             {
