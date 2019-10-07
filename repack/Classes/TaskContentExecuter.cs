@@ -14,9 +14,9 @@ namespace repack.Classes
             Post = post;
         }
 
-        protected static List<(string, string)> GetPropertyName(string text)
+        public static List<(string, string)> GetPropertyName(string text)
         {
-            return Regex.Matches(text, "{{(.*)}}").Select(m => (m.Groups[0].Value, m.Groups[1].Value)).ToList();
+            return Regex.Matches(text, "{{(.*?)}}").Select(m => (m.Groups[0].Value, m.Groups[1].Value)).ToList();
 
         }
     }
