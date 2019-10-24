@@ -29,7 +29,7 @@ namespace repack.Classes
             if (tmp == null) return result;
             if (tmp is JValue)
             {
-                result = tmp.Value<string>();
+                result = tmp.Value<string>() ?? "";
                 result = result.Replace("\\", "\\\\");
                 result = result.Replace("\r\n", "\\r\\n");
                 result = result.Replace("\n", "\\n");
